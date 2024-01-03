@@ -21,49 +21,7 @@
   </div>
   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script>
-  document.getElementById("loginForm").addEventListener("submit", function(event) {
-    event.preventDefault(); 
-    
-    var login = document.getElementById("userLogin").value;
-    var password = document.getElementById("userPassword").value;
-    
-    const userData = {
-                login,
-                password
-            };
 
-    fetch('http://localhost:8080/login', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(userData)
-    })
-    .then(response => {
-      if (!response.ok) {
-          if (response.status === 403 || response.status === 401) {
-              return response.text().then(errorMessage => {
-                alert(errorMessage || 'Acesso proibido')
-                document.getElementById('loginForm').reset();
-                throw new Error(errorMessage || 'Acesso proibido');
-              });
-          } else {
-              throw new Error('Erro na requisição');
-          }
-      }
-      return response.json();
-    })
-    .then(data => {
-        localStorage.setItem('token', data.token); 
-    })
-    .then(userData => {
-        window.location.href = `http://localhost:1313/users/userid`;
-    })
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-    });
-</script>
+<script src="/js/login.js"></script>
 </body>
 </html>
