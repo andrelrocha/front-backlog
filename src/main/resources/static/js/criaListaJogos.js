@@ -14,11 +14,10 @@ document.addEventListener("DOMContentLoaded", function() {
         document.cookie = `livro_id=${id}; path=/`;
         window.location.href = 'http://localhost:1313/livros/livroporid';
     }
-    /*
+    */
 
-    /*
-    document.getElementById('sugestaoLivro').addEventListener('click', function() {
-        fetch('http://localhost:8080/livros/sugestao', {
+    document.getElementById('sugestaoJogo').addEventListener('click', function() {
+        fetch('http://localhost:8080/games/suggestion', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -26,14 +25,14 @@ document.addEventListener("DOMContentLoaded", function() {
         })
             .then(response => response.json())
             .then(data => {
-                const idDoLivro = data.id;
-                abrirPaginaPorId(idDoLivro);
+                console.log(data);
+                //const idDoLivro = data.id;
+                //abrirPaginaPorId(idDoLivro);
             })
             .catch(error => {
                 alert('Erro ao buscar sugestão de livro:', error);
             });
     });
-    */
 
     fetch('http://localhost:8080/games', {
         method: 'GET',
