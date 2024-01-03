@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Livros Cadastrados</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #696D7D;">
+        <a href="http://localhost:1313/users/userid" class="btn btn-primary me-2">Meu Perfil</a>
+        <a href="http://localhost:1313/livros" class="btn btn-success me-2">Ir para Livros</a>
+        Biblioteca POO
+        <button id="logoutButton" class="btn btn-danger ms-2">Sair</button>
+    </nav>
+
+    <h1 class="text-center">Lista de Livros</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Titulo</th>
+                            <th>Autor</th>
+                            <th>Assunto</th>
+                            <th>Qtd Estoque</th>
+                            <th>Acessar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="livros-list">
+                        <!-- adiciona as linhas da tabela -->
+                    </tbody>
+                </table>
+                <a href="http://localhost:1313/livros/criar" class="btn btn-primary btn-lg mt-3">Criar um livro</a>
+
+                <button id="sugestaoLivro" class="btn btn-primary btn-lg mt-3">Me sugira um Livro!</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const token = localStorage.getItem('token');
+
+            const logoutButton = document.getElementById('logoutButton');
+        
+            logoutButton.addEventListener('click', function() {
+                localStorage.clear();
+                window.location.href = 'http://localhost:1313/login';
+            });
+
+            function abrirPaginaPorId(id) {
+                document.cookie = `livro_id=${id}; path=/`;
+                window.location.href = 'http://localhost:1313/livros/livroporid';
+            }
+
+            document.getElementById('sugestaoLivro').addEventListener('click', function() {
+                fetch('http://localhost:8080/livros/sugestao', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        const idDoLivro = data.id;
+                        abrirPaginaPorId(idDoLivro);
+                    })
+                    .catch(error => {
+                        alert('Erro ao buscar sugestão de livro:', error);
+                    });
+            });
+
+            fetch('http://localhost:8080/livros', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    if (response.status === 401 || response.status === 403) {
+                        alert('Erro 401: Você não está autorizado para a operação desejada');
+                        window.location.href = 'http://localhost:1313/login';
+                    } else {
+                        throw new Error('Erro na requisição');
+                    }
+                }
+                return response.json();
+            })
+            .then(livrosData => {
+                const tableBody = document.getElementById('livros-list');
+                
+                for (const livroData of livrosData) {
+                    const row = document.createElement('tr');
+                    
+                    const idCell = document.createElement('td');
+                    idCell.innerText = livroData.id;
+                    row.appendChild(idCell);
+                    
+                    const tituloCell = document.createElement('td');
+                    tituloCell.innerText = livroData.titulo;
+                    row.appendChild(tituloCell);
+                    
+                    const autorCell = document.createElement('td');
+                    autorCell.innerText = livroData.autor;
+                    row.appendChild(autorCell);
+                    
+                    const assuntoCell = document.createElement('td');
+                    assuntoCell.innerText = livroData.assunto;
+                    row.appendChild(assuntoCell);
+
+                    const quantidadeCell = document.createElement('td');
+                    quantidadeCell.innerText = livroData.quantidadeEstoque;
+                    row.appendChild(quantidadeCell);
+
+                    const acaoCell = document.createElement('td');
+                    const button = document.createElement('button');
+                    button.classList.add('btn', 'btn-warning', 'btn-lg', 'p-0', 'rounded');
+                    button.style.width = '30px';
+                    button.style.height = '30px';
+
+                    button.addEventListener('click', function() {
+                        abrirPaginaPorId(livroData.id);
+                    });
+                    acaoCell.appendChild(button);
+                    row.appendChild(acaoCell);
+                    
+                    tableBody.appendChild(row);
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+        });
+    </script>
+</body>
+</html>
