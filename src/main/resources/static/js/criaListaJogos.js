@@ -8,8 +8,13 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = 'http://localhost:1313/login';
     });
 
+    function abrirPaginaPorId(id) {
+        document.cookie = `game_id=${id}; path=/`;
+        window.location.href = 'http://localhost:1313/jogos/jogoporid';
+    }
+
     //falta implementar a paginação, com rota para games/pageable
-    fetch('http://localhost:8080/games', {
+    fetch('http://localhost:8080/games/pageable', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -26,7 +31,9 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         return response.json();
     })
-    .then(jogosData => {
+    .then(responseData  => {
+        const jogosData = responseData.content;
+
         const tableBody = document.getElementById('jogos-list');
         
         for (const jogoData of jogosData) {
@@ -55,6 +62,19 @@ document.addEventListener("DOMContentLoaded", function() {
             const genreCell = document.createElement('td');
             genreCell.innerText = jogoData.genre;
             row.appendChild(genreCell);
+
+            const acaoCell = document.createElement('td');
+            const button = document.createElement('button');
+            button.classList.add('btn', 'btn-warning', 'btn-lg', 'p-0', 'rounded');
+            button.style.width = '30px';
+            button.style.height = '30px';
+
+            button.addEventListener('click', function() {
+                            abrirPaginaPorId(jogoData.id);
+                        });
+            acaoCell.appendChild(button);
+            row.appendChild(acaoCell);            
+
 
             tableBody.appendChild(row);
         }
