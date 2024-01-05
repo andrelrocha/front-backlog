@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jogo por ID</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #696D7D;">
+        <!--
+        <a href="http://localhost:1313/livros" class="btn btn-success me-2">Ir para Livros</a>
+        -->
+
+        Backlog App
+        <button id="logoutButton" class="btn btn-danger ms-2">Sair</button>
+    </nav>
+
+    <h1 class="text-center">Lista de Jogos</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <tbody id="game-info">
+                        <tr>
+                            <th>ID:</th>
+                            <td id="gameId"></td>
+                        </tr>
+                        <tr>
+                            <th>Nome:</th>
+                            <td id="gameNome"></td>
+                        </tr>
+                        <tr>
+                            <th>Duração:</th>
+                            <td id="gameDuracao"></td>
+                        </tr>
+                        <tr>
+                            <th>Metacritic:</th>
+                            <td id="gameMetacritic"></td>
+                        </tr>
+                        <tr>
+                            <th>Excitement:</th>
+                            <td id="gameExcitement"></td>
+                        </tr>
+
+                        <tr>
+                            <th>Já joguei:</th>
+                            <td id="gamePlayed"></td>
+                        </tr>
+
+                        <tr>
+                            <th>Gênero:</th>
+                            <td id="gameGenre"></td>
+                        </tr>
+
+                        <!--
+                        <tr>
+                            <th>Atualizar informações:</th>
+                            <td>
+                                <a href="http://localhost:1313/games/update" class="btn btn-primary">Atualizar</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Apagar game:</th>
+                            <td>
+                                <button id="deleteButton" class="btn btn-danger">Excluir</button>
+                            </td>
+                        </tr>
+                        -->
+                    </tbody>
+                </table>
+                <!--
+                <a href="http://localhost:1313/games/create" class="btn btn-primary btn-lg mt-3">Adicionar um Jogo</a>
+                -->
+
+                <button id="sugestaoJogo" class="btn btn-primary btn-lg mt-3">Me sugira um Jogo!</button>
+            </div>
+        </div>
+    </div>
+</body>
+    <script src="/js/completaJogo.js"></script>
+    <script src="/js/sugestaoJogo.js"></script>
+</html>
+
+<!-- FALTA AJEITAR E MAPEAR A PAGINA ESPECÍFICA DO GAME -->
+<!-- adiciona as linhas da tabela FALTA ADICIONAR O BOTÃO COM OPÇÃO DE EDITAR, EXCLUIR (FAZER NESTA PÁGINA DO JOGO) --> 

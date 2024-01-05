@@ -3,11 +3,12 @@
 <head>
     <title>Jogos Cadastrados</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="/js/criaListaJogos.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-light justify-content-center fs-3 mb-5" style="background-color: #696D7D;">
+        <!--    
         <a href="http://localhost:1313/livros" class="btn btn-success me-2">Ir para Livros</a>
+        -->
         Backlog App
         <button id="logoutButton" class="btn btn-danger ms-2">Sair</button>
     </nav>
@@ -42,13 +43,17 @@
         </div>
     </div>
 </body>
+    <script src="/js/sugestaoJogo.js"></script>
+    <script src="/js/criaListaJogos.js"></script>
+
 </html>
 
 
 
 
 
-<!-- FALTA AJEITAR A VIEW DE SUGESTÃO DE JOGO
+<!-- FALTA AJEITAR A VIEW DE SUGESTÃO DE JOGO  - CRIADA A ROTA BACK
 FALTA AJEITAR A VIEW DE CRIAÇÃO, EDIÇÃO E EXCLUSÃO DE JOGO
 FALTA AJEITAR A TELA PARA ESQUECI MINHA SENHA -->
 
+<!-- FALTA ADICIONAR LÓGICA DE PAGINAÇÃO, QUE O USUÁRIO VAI CLICAR E VAI FAZER UMA NOVA REQUISIÇÃO COM NOVOS PARAMETROS PARA O BACK -->

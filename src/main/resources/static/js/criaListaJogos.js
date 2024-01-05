@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-
     const token = localStorage.getItem('token');
 
     const logoutButton = document.getElementById('logoutButton');
@@ -9,31 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = 'http://localhost:1313/login';
     });
 
-    /*
-    function abrirPaginaPorId(id) {
-        document.cookie = `livro_id=${id}; path=/`;
-        window.location.href = 'http://localhost:1313/livros/livroporid';
-    }
-    */
-
-    document.getElementById('sugestaoJogo').addEventListener('click', function() {
-        fetch('http://localhost:8080/games/suggestion', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                //const idDoLivro = data.id;
-                //abrirPaginaPorId(idDoLivro);
-            })
-            .catch(error => {
-                alert('Erro ao buscar sugestão de livro:', error);
-            });
-    });
-
+    //falta implementar a paginação, com rota para games/pageable
     fetch('http://localhost:8080/games', {
         method: 'GET',
         headers: {

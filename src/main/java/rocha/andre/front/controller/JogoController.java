@@ -9,4 +9,9 @@ public class JogoController {
     public String listar() {
         return "jogo/listajogos";
     }
+
+    @GetMapping("/jogos/jogoporid")
+    public String listarPorId() {
+        return "jogo/jogo";
+    }
 }
