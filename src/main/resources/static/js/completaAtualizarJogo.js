@@ -1,14 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const token = localStorage.getItem('token');
-
-    const logoutButton = document.getElementById('logoutButton');
-
-    logoutButton.addEventListener('click', function() {
-        localStorage.clear();
-        window.location.href = 'http://localhost:1313/login';
-    });
-
-        // Obtém o valor do cookie game_id
         const cookieString = document.cookie;
         const cookies = cookieString.split(';').map(cookie => cookie.trim());
         let gameId = null;
@@ -20,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Verifica se o gameId foi encontrado nos cookies
         if (gameId) {
             fetch(`http://localhost:8080/games/${gameId}`, {
                 method: 'GET',
@@ -44,27 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     return response.json();
                 })
                 .then(gameData => {
-                    if (document.getElementById('gameId')) {
-                        document.getElementById('gameId').innerText = gameData.id;
-                    }
-                    if (document.getElementById('gameNome')) {
-                        document.getElementById('gameNome').innerText = gameData.name;
-                    }
-                    if (document.getElementById('gameDuracao')) {
-                        document.getElementById('gameDuracao').innerText = gameData.length;
-                    }
-                    if (document.getElementById('gameMetacritic')) {
-                        document.getElementById('gameMetacritic').innerText = gameData.metacritic;
-                    }
-                    if (document.getElementById('gameExcitement')) {
-                        document.getElementById('gameExcitement').innerText = gameData.excitement;
-                    }
-                    if (document.getElementById('gamePlayed')) {
-                        document.getElementById('gamePlayed').innerText = gameData.played;
-                    }
-                    if (document.getElementById('gameGenre')) {
-                        document.getElementById('gameGenre').innerText = gameData.genre;
-                    }
+                    document.getElementById('jogoNome').value = gameData.name;
+                    document.getElementById('jogoDuracao').value = gameData.length;
+                    document.getElementById('jogoMetacritic').value = gameData.metacritic;
+                    document.getElementById('jogoVontade').value = gameData.excitement;
+                    document.getElementById('jogoGenero').value = gameData.genre;
                 })
                 .catch(error => {
                     console.error('Erro:', error.message);
