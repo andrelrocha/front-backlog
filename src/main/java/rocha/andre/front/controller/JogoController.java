@@ -19,4 +19,9 @@ public class JogoController {
     public String criarJogo() {
         return "jogo/create";
     }
+
+    @GetMapping("/jogos/editar")
+    public String editarJogo() {
+        return "jogo/update";
+    }
 }
