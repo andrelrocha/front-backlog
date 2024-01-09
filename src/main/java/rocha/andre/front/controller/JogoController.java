@@ -14,4 +14,9 @@ public class JogoController {
     public String listarPorId() {
         return "jogo/jogo";
     }
+
+    @GetMapping("/jogos/criar")
+    public String criarJogo() {
+        return "jogo/create";
+    }
 }
