@@ -54,10 +54,6 @@ document.addEventListener("DOMContentLoaded", function() {
             for (const jogoData of jogosData) {
                 const row = document.createElement('tr');
 
-                const idCell = document.createElement('td');
-                idCell.innerText = jogoData.id;
-                row.appendChild(idCell);
-
                 const nameCell = document.createElement('td');
                 nameCell.innerText = jogoData.name;
                 row.appendChild(nameCell);
@@ -95,3 +91,8 @@ document.addEventListener("DOMContentLoaded", function() {
     fetchGames(0);
 
 });
+
+
+
+//ORGANIZAR OS .JS EM PASTAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//ADICIONAR BOTÃO PARA LISTAR JOGOS QUE EU ESTOU JOGANDO

@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap');
+
+#navHeader {
+    padding: 10px;
+}
+
+/* Estilos específicos para os elementos dentro do navHeader */
+.navbar-left,
+.navbar-right {
+    display: flex;
+}
+
+.navbar-left {
+    margin-left: 1.5rem;
+}
+
+.navbar-right {
+    margin-right: 2rem;
+}
+
+.navbar-middle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+
+    font-weight: 700;
+    font-size: 2rem;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+#tituloPagina {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 400;
+}
