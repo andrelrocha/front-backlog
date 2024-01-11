@@ -72,6 +72,3 @@ document.addEventListener('DOMContentLoaded', function() {
                 });  
         }
 }); 
-
-
-//ADICIONAR VERIFICAÇÃO DE SOMENTE RECUPERAR O ELEMENT ID SE ESSE ELEMTN EXISTIR
