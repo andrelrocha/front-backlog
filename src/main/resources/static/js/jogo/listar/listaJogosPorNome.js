@@ -90,6 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(responseData => {
                 const jogosData = responseData.content;
+
+                if (jogosData.length == 0) {
+                    alert('Sua pesquisa não retornou resultados');
+                    window.location.reload();
+                }
     
                 const tableBody = document.getElementById('jogos-list');
                 tableBody.innerHTML = '';
