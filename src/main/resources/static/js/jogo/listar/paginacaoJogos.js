@@ -15,22 +15,31 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = 'http://localhost:1313/jogos/jogoporid';
     }
 
+    let currentPage = 0;
     function createPaginationButtons(totalPages) {
         paginationContainer.innerHTML = '';
-
+    
         for (let i = 0; i < totalPages; i++) {
             const pageNumber = i;
             const button = document.createElement('button');
             button.textContent = pageNumber + 1;
             button.classList.add('btn', 'btn-outline-primary', 'mx-1');
     
-            button.addEventListener('click', function() {
+            if (pageNumber === currentPage) {
+                button.classList.add('btn-primary');
+                button.classList.remove('btn-outline-primary');
+                button.style.color = 'white';
+            }
+    
+            button.addEventListener('click', function () {
+                currentPage = pageNumber;
                 fetchGames(pageNumber);
             });
     
             paginationContainer.appendChild(button);
         }
     }
+    
 
     function fetchGames(pageNumber) {
         fetch(`http://localhost:8080/games/pageable?page=${pageNumber}`, {
