@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", function() {
         window.location.href = 'http://localhost:1313/jogos/jogoporid';
     }
 
+    function abrirPaginaPorIdInNewTab(id) {
+        document.cookie = `game_id=${id}; path=/`;
+        window.open('http://localhost:1313/jogos/jogoporid', '_blank');
+    }
+
     let currentPage = 0;
     function createPaginationButtons(totalPages) {
         paginationContainer.innerHTML = '';
@@ -72,6 +77,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 nameCell.innerText = jogoData.name;
                 row.appendChild(nameCell);
 
+                nameCell.addEventListener('click', function(event) {
+                    if (event.ctrlKey) {
+                        abrirPaginaPorIdInNewTab(jogoData.id);
+                    }
+                });
+
                 const durationCell = document.createElement('td');
                 durationCell.innerText = jogoData.length;
                 row.appendChild(durationCell);
@@ -99,11 +110,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 button.style.height = '30px';
 
                 button.addEventListener('click', function() {
-                                abrirPaginaPorId(jogoData.id);
-                            });
-                acaoCell.appendChild(button);
-                row.appendChild(acaoCell);            
+                    abrirPaginaPorId(jogoData.id);
+                });
 
+                acaoCell.appendChild(button);
+                row.appendChild(acaoCell);       
 
                 tableBody.appendChild(row);
             }
