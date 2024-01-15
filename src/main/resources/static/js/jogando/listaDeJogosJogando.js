@@ -74,6 +74,42 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    function apagarData(id) {
+        const confirmAction = prompt('Você tem certeza que deseja apagar o jogo da lista "Jogando"? (S/N)');
+
+        if (confirmAction === 'S' || confirmAction === 's') {
+
+            fetch(`http://localhost:8080/playing/delete/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+            }).then(response => {
+                if (response.ok) {
+                    alert('Jogo removido da lista com sucesso!');
+                    window.location.href = `http://localhost:1313/jogando`;
+                } else if (response.status === 400) {
+                    response.text().then(errorMessage => {
+                        alert(`Erro ${response.status}: ${errorMessage}`);
+                    });
+                } else if (response.status === 401) {
+                    alert('Erro 401: Você não está autorizado para a operação desejada');
+                } else if (response.status === 403) {
+                    alert('Erro 403: Você não está autorizado para a operação desejada');
+                } else {
+                    alert('Erro ao remover o jogo da lista. Por favor, tente novamente.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert(error.message);
+            });
+        } else {
+            alert('Ação cancelada.');
+        }
+    }
+    
+
     function fetchGames(pageNumber) {
         fetch(`http://localhost:8080/playing/pageable?page=${pageNumber}`, {
             method: 'GET',
@@ -130,11 +166,20 @@ document.addEventListener("DOMContentLoaded", function() {
                 button.style.height = '30px';
 
                 button.addEventListener('click', function() {
-                    editarData(jogoData.id);
+                    const escolha = prompt("Escolha 'editar' ou 'apagar':");
+
+                    if (escolha === 'editar') {
+                        editarData(jogoData.id);
+                    } else if (escolha === 'apagar') {
+                        apagarData(jogoData.id);
+                    } else {
+                        alert('Ação cancelada ou inválida.');
+                        console.log('Ação cancelada ou inválida.');
+                    }
                 });
 
                 acaoCell.appendChild(button);
-                row.appendChild(acaoCell);  
+                row.appendChild(acaoCell);
 
                 tableBody.appendChild(row);
             }
