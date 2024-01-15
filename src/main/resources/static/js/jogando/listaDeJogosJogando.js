@@ -27,6 +27,53 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    function convertToISODate(inputDate) {
+        const parts = inputDate.split('/');
+        const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}T00:00:00`;
+        return formattedDate;
+    }
+
+    function editarData(id) {
+        const firstPlayedInput = prompt('Quando foi a primeira vez que você jogou? (DD/MM/YYYY)');
+
+        if (firstPlayedInput) {
+            const firstPlayed = convertToISODate(firstPlayedInput);
+
+            const playingData = JSON.stringify({
+                id,
+                firstPlayed
+            });
+
+            fetch('http://localhost:8080/playing/update', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: playingData
+            }).then(response => {
+                if (response.ok) {
+                    alert('Data da primeira vez que jogou editada com sucesso!');
+                    window.location.href = `http://localhost:1313/jogando`;
+                } else if (response.status === 400) {
+                    response.text().then(errorMessage => {
+                        alert(`Erro ${response.status}: ${errorMessage}`);
+                    });
+                } else if (response.status === 401) {
+                    alert('Erro 401: Você não está autorizado para a operação desejada');
+                } else if (response.status === 403) {
+                    alert('Erro 403: Você não está autorizado para a operação desejada');
+                } else {
+                    alert('Erro ao editar data da primeira vez que jogou. Por favor, tente novamente.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert(error.message);
+            });
+        }
+    }
+
     function fetchGames(pageNumber) {
         fetch(`http://localhost:8080/playing/pageable?page=${pageNumber}`, {
             method: 'GET',
@@ -76,6 +123,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 firstPlayedCell.innerText = firstPlayedDate.toLocaleDateString(); 
                 row.appendChild(firstPlayedCell);
 
+                const acaoCell = document.createElement('td');
+                const button = document.createElement('button');
+                button.classList.add('btn', 'btn-warning', 'btn-lg', 'p-0', 'rounded');
+                button.style.width = '30px';
+                button.style.height = '30px';
+
+                button.addEventListener('click', function() {
+                    editarData(jogoData.id);
+                });
+
+                acaoCell.appendChild(button);
+                row.appendChild(acaoCell);  
+
                 tableBody.appendChild(row);
             }
 
@@ -89,10 +149,4 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     fetchGames(0);
-
 });
-
-
-
-//ORGANIZAR OS .JS EM PASTAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//ADICIONAR BOTÃO PARA LISTAR JOGOS QUE EU ESTOU JOGANDO
