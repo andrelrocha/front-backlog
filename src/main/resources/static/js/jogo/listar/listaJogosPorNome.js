@@ -20,6 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function abrirPaginaPorId(id) {
+        document.cookie = `game_id=${id}; path=/`;
+        window.location.href = 'http://localhost:1313/jogos/jogoporid';
+    }
+
     searchByNameButton.addEventListener('click', function() {
         const rowElement = document.createElement('div');
         rowElement.className = 'row mt-3';
