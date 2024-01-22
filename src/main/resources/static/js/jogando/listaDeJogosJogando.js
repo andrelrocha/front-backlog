@@ -2,14 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const token = localStorage.getItem('token');
 
     const paginationContainer = document.getElementById('pagination');
-
-    const logoutButton = document.getElementById('logoutButton');
-
-    logoutButton.addEventListener('click', function() {
-        localStorage.clear();
-        window.location.href = 'http://localhost:1313/login';
-    });
-
+    
     function createPaginationButtons(totalPages) {
         paginationContainer.innerHTML = '';
 

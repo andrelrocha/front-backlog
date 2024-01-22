@@ -5,24 +5,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css" rel="stylesheet">
 </head>
-<header>
-    <link rel="stylesheet" th:href="@{/styles/styles.css}" />
-
-    <nav id="navHeader" class="navbar navbar-light justify-content-between fs-3" style="background-color: #696D7D; position: relative;">
-        <div class="navbar-left">
-            <a href="http://localhost:1313/jogando" class="btn btn-success me-2">Ir para Jogando</a>
-            <a href="http://localhost:1313/jogos" class="btn btn-success me-2">Ir para Jogos</a>
-        </div>
-        
-        <div class="navbar-middle">
-            Backlog App
-        </div>
-
-        <div class="navbar-right">
-            <button id="logoutButton" class="btn btn-danger ms-2">Sair</button>
-        </div>
-    </nav>
-</header>
+<link rel="stylesheet" th:href="@{/styles/styles.css}" />
+<script src="/js/generateHeader.js"></script>
 <body>
 
     <h1 class="text-center mb-4 mt-4" id="tituloPagina">Lista de Jogos</h1>

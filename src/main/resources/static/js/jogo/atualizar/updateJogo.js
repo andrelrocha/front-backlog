@@ -11,15 +11,6 @@ for (const cookie of cookies) {
 
 const token = localStorage.getItem('token');
 
-document.addEventListener("DOMContentLoaded", function() {
-    const logoutButton = document.getElementById('logoutButton');
-
-    logoutButton.addEventListener('click', function() {
-        localStorage.clear();
-        window.location.href = 'http://localhost:1313/login';
-    });
-});
-
 
 document.getElementById('jogoForm').addEventListener('submit', function(event) {
     event.preventDefault();

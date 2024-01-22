@@ -1,13 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const token = localStorage.getItem('token');
 
-    const logoutButton = document.getElementById('logoutButton');
-
-    logoutButton.addEventListener('click', function() {
-        localStorage.clear();
-        window.location.href = 'http://localhost:1313/login';
-    });
-
         // Obtém o valor do cookie game_id
         const cookieString = document.cookie;
         const cookies = cookieString.split(';').map(cookie => cookie.trim());
