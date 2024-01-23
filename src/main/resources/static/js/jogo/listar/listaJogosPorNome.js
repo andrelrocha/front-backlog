@@ -67,11 +67,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         searchByNameButton.remove();
 
-        searchIconElement.addEventListener('click', function() {
+        searchIconElement.addEventListener('click', performSearch);
+        inputElement.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
             const token = localStorage.getItem('token');
-
             const nameCompare = inputElement.value;
-
+        
             fetch(`http://localhost:8080/games/searchbyname/${nameCompare}`, {
                 method: 'GET',
                 headers: {
@@ -154,7 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Erro:', error.message);
                 alert(error.message);
             })
-        });
+        }
+    
     });
 
 });

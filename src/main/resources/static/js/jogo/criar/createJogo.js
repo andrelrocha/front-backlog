@@ -47,7 +47,7 @@ document.getElementById('jogoForm').addEventListener('submit', function(event) {
         } else if (response.status === 403) {
             alert('Erro 403: Você não está autorizado para a operação desejada');
         } else {
-            alert('Erro ao criar usuário. Por favor, tente novamente.');
+            alert('Erro ao criar jogo. Por favor, tente novamente.');
         }
     })
     .catch(error => {

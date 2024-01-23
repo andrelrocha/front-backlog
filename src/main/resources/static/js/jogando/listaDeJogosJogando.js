@@ -101,6 +101,50 @@ document.addEventListener("DOMContentLoaded", function() {
             alert('Ação cancelada.');
         }
     }
+
+    function criarOpiniao(gameId) {
+        const note = prompt("Digite a nota do jogo:");
+        const opinion = prompt("Digite sua opinião sobre o jogo:");
+
+        const opinionData = JSON.stringify({
+            gameId,
+            note,
+            opinion
+        });
+
+        if (note === null || opinion === null) {
+            alert('Ação cancelada.');
+            throw new Error('Ação cancelada.');
+        } 
+
+        fetch('http://localhost:8080/opinions/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: opinionData
+        })
+        .then(response => {
+            if (response.status === 201) {
+                alert('Opinião criada com sucesso!');
+                window.location.href = 'http://localhost:1313/opinioes';
+                return response.json();
+            } else if (response.status === 400) {
+                response.text().then(errorMessage => {
+                    alert(`Erro ${response.status}: ${errorMessage}`);
+                });
+            } else if (response.status === 401 || response.status === 403) {
+                alert('Erro 401: Você não está autorizado para a operação desejada');
+            }  else {
+                alert('Erro ao criar opinião. Por favor, tente novamente.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Houve um erro ao processar a solicitação. Por favor, tente novamente.');
+        });
+    }
     
 
     function fetchGames(pageNumber) {
@@ -147,7 +191,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 row.appendChild(genreCell);
 
                 const firstPlayedCell = document.createElement('td');
-                // Assuming jogoData.firstPlayed is a date string in the format 'YYYY-MM-DDTHH:mm:ss'
                 const firstPlayedDate = new Date(jogoData.firstPlayed);
                 firstPlayedCell.innerText = firstPlayedDate.toLocaleDateString(); 
                 row.appendChild(firstPlayedCell);
@@ -159,12 +202,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 button.style.height = '30px';
 
                 button.addEventListener('click', function() {
-                    const escolha = prompt("Escolha 'editar' ou 'apagar':");
+                    const escolha = prompt("Escolha 'editar', 'apagar' ou 'acabei':");
 
                     if (escolha === 'editar') {
                         editarData(jogoData.id);
                     } else if (escolha === 'apagar') {
                         apagarData(jogoData.id);
+                    } else if(escolha == 'acabei') {
+                        criarOpiniao(jogoData.gameId);
                     } else {
                         alert('Ação cancelada ou inválida.');
                         console.log('Ação cancelada ou inválida.');

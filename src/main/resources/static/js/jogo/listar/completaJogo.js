@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         document.getElementById('gameId').innerText = gameData.id;
                     }
                     if (document.getElementById('gameNome')) {
+                        document.getElementById('tituloPagina').innerText = gameData.name;
                         document.getElementById('gameNome').innerText = gameData.name;
                     }
                     if (document.getElementById('gameDuracao')) {
