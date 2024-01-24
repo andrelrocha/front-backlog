@@ -33,3 +33,30 @@
     font-family: 'Ubuntu', sans-serif;
     font-weight: 400;
 }
+
+
+//view opiniao jogo por id
+.teste {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.opinion {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+}
+
+.opinion td {
+    text-align: justify;
+}
+
+.columnValue {
+    text-align: right;
+}
+
+.table th {
+    text-align: left;
+    min-width: 15rem;
+}

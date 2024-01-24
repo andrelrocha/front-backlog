@@ -13,36 +13,51 @@
             <div class="col">
                 <table class="table">
                     <tbody id="opinion-info">
-                        <tr>
-                            <th>ID:</th>
+                        <tr class="columnValue">
+                            <th id="column_name">ID:</th>
                             <td id="opinionId"></td>
                         </tr>
-                        <tr>
-                            <th>Nome:</th>
+                        <tr class="columnValue">
+                            <th id="column_name">Nome:</th>
                             <td id="gameNome"></td>
                         </tr>
-                        <tr>
-                            <th>Console:</th>
+                        <tr class="columnValue">
+                            <th id="column_name">Console:</th>
                             <td id="gameConsole"></td>
                         </tr>
-                        <tr>
-                            <th>Nota:</th>
+                        <tr class="columnValue">
+                            <th id="column_name">Nota:</th>
                             <td id="gameNote"></td>
                         </tr>
-                        <tr>
-                            <th>Metacritic:</th>
+                        <tr class="columnValue">
+                            <th id="column_name">Metacritic:</th>
                             <td id="gameMetacritic"></td>
                         </tr>
-                        <tr>
-                            <th>Gênero:</th>
+                        <tr class="columnValue">
+                            <th id="column_name">Gênero:</th>
                             <td id="gameGenre"></td>
                         </tr>
-                        <tr>
-                            <th>Opinião:</th>
+                        <tr class="opinion">
+                            <th id="column_name">Opinião:</th>
                             <td id="gameOpinion"></td>
                         </tr>
 
+                        
+                        <tr class="columnValue">
+                            <th id="column_name">Acessar jogo</th>
+                            <td>
+                                <a href="http://localhost:1313/jogos/jogoporid" class="btn btn-success" id="button_acessar_jogo">Acessar</a>
+                            </td>
+                        </tr>
+                            
                         <!--
+                        <tr>
+                            <th>Deletar opinião</th>
+                            <td>
+                                <a href="http://localhost:1313/jogos/deletar" class="btn btn-danger">Deletar</a>
+                            </td>
+                        </tr>
+
                         <tr>
                             <th>Atualizar informações</th>
                             <td>
@@ -56,6 +71,6 @@
         </div>
     </div>
 </body>
-
+    <script src="/js/opiniao/listaOpiniaoPorId.js"></script>
     <script src="/js/validaJWT.js"></script>
 </html>

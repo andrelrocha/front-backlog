@@ -29,17 +29,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function abrirPaginaPorId(id) {
-        document.cookie = `game_id=${id}; path=/`;
-        window.location.href = 'http://localhost:1313/jogos/jogoporid';
+        document.cookie = `opinion_id=${id}; path=/`;
+        window.location.href = 'http://localhost:1313/opiniaojogo';
     }
 
     
     function abrirPaginaPorIdInNewTab(id) {
-        document.cookie = `game_id=${id}; path=/`;
-        window.open('http://localhost:1313/jogos/jogoporid', '_blank');
+        document.cookie = `opinion_id=${id}; path=/`;
+        window.open('http://localhost:1313/opiniaojogo', '_blank');
     }
 
-    function fetchGames(pageNumber) {
+    function fetchOpinions(pageNumber) {
         fetch(`http://localhost:8080/opinions?page=${pageNumber}`, {
             method: 'GET',
             headers: {
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 nameCell.addEventListener('click', function(event) {
                     if (event.ctrlKey) {
-                        abrirPaginaPorIdInNewTab(opinionData.gameId);
+                        abrirPaginaPorIdInNewTab(opinionData.id);
                     }
                 });
 
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.style.height = '30px';
 
                 button.addEventListener('click', function() {
-                    abrirPaginaPorId(opinionData.gameId);
+                    abrirPaginaPorId(opinionData.id);
                 });
 
                 acaoCell.appendChild(button);
@@ -117,6 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    fetchGames(0);
+    fetchOpinions(0);
 
 });
