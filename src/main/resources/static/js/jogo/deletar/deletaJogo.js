@@ -35,7 +35,7 @@ deleteButton.addEventListener('click', () => {
                 alert('Erro ao apagar jogo. Por favor, tente novamente.');
             }
         }
-        alert('Livro apagado com sucesso.');
+        alert('Jogo apagado com sucesso.');
         window.location.href = 'http://localhost:1313/jogos';
     })
     .catch(error => {

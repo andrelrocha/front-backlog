@@ -36,11 +36,6 @@
 
 
 //view opiniao jogo por id
-.teste {
-    display: flex;
-    flex-wrap: nowrap;
-}
-
 .opinion {
     display: flex;
     flex-wrap: wrap;
@@ -50,13 +45,16 @@
 
 .opinion td {
     text-align: justify;
+
+    //FAZER COM QUE OCUPE A TELA INTEIRA OU AO MENOS CENTRALIZADO
+    //MARGIN AO FINAL DA TELA DE OPINIÃO
 }
 
 .columnValue {
     text-align: right;
 }
 
-.table th {
+.table-opinion th {
     text-align: left;
     min-width: 15rem;
 }

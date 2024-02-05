@@ -20,6 +20,11 @@ public class UserController {
         return "user/login";
     }
 
+    @GetMapping("/forgotpassword")
+    public String forgot() {
+        return "user/forgot";
+    }
+
     @GetMapping("/")
     public String homepage() {
         return "user/login";
