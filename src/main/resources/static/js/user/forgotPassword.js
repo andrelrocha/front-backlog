@@ -28,8 +28,8 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     .then(data => {
         document.cookie = `token_pass=${data.tokenMail}; path=/`;
         alert('Tudo certo, confirme sua senha a seguir!');
-        document.getElementById('userForm').reset();
-        window.location.href = 'http://localhost:1313/newpassword';
+        document.getElementById('loginForm').reset();
+        window.location.href = 'http://localhost:1313/resetpassword';
     })
     .catch(error => {
         console.error('Erro:', error);

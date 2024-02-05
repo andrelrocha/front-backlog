@@ -25,6 +25,11 @@ public class UserController {
         return "user/forgot";
     }
 
+    @GetMapping("/resetpassword")
+    public String reset() {
+        return "user/reset";
+    }
+
     @GetMapping("/")
     public String homepage() {
         return "user/login";
