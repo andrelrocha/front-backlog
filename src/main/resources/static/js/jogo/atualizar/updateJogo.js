@@ -39,9 +39,6 @@ document.getElementById('jogoForm').addEventListener('submit', function(event) {
         jogoData.genre = jogoGenero;
     }
 
-    
-
-
     fetch(`http://localhost:8080/games/edit/${gameId}`, {
         method: 'PUT',
         headers: {

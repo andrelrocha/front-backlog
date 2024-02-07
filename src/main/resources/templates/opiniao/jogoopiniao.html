@@ -7,7 +7,21 @@
 <link rel="stylesheet" th:href="@{/styles/styles.css}" />
 <script src="/js/generateHeader.js"></script>
 <body>
-    <h1 class="text-center mt-3" id="tituloPagina"></h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 d-flex align-items-center justify-content-center">
+                <h1 class="text-center mt-3" id="tituloPagina"></h1>
+            </div>
+            <div class="col-md-3 d-flex align-items-center justify-content-end">
+                <a href="http://localhost:1313/jogos/jogoporid" class="btn btn-success mt-3" id="button_acessar_jogo">Acessar</a>
+                <a href="http://localhost:1313/opiniaojogo/editar" class="btn btn-primary mt-3 ml-2 custom-margin-left">Atualizar</a>
+                <button class="btn btn-danger mt-3 custom-margin-left" id="deleteOpinionButton">Deletar</button>
+            </div>
+        </div>
+    </div>
+    
+    
+
     <div class="container">
         <div class="row">
             <div class="col">
@@ -42,21 +56,6 @@
                             <td id="gameOpinion"></td>
                         </tr>
                             
-                        <!--
-                        <tr>
-                            <th>Deletar opinião</th>
-                            <td>
-                                <a href="http://localhost:1313/jogos/deletar" class="btn btn-danger">Deletar</a>
-                            </td>
-                        </tr>
-                        -->
-
-                        <tr >
-                            <th>Atualizar informações</th>
-                            <td>
-                                <a href="http://localhost:1313/opiniaojogo/editar" class="btn btn-primary mt-3">Atualizar</a>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -64,5 +63,6 @@
     </div>
 </body>
     <script src="/js/opiniao/listaOpiniaoPorId.js"></script>
+    <script src="/js/opiniao/deleteOpiniao.js"></script>
     <script src="/js/validaJWT.js"></script>
 </html>

@@ -75,3 +75,7 @@
 .opinion td {
     vertical-align: top;
 }
+
+.custom-margin-left {
+    margin-left: 0.5rem !important;
+}

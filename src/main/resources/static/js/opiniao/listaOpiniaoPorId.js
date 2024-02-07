@@ -3,15 +3,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const token = localStorage.getItem('token');
 
     const cookieString = document.cookie;
-        const cookies = cookieString.split(';').map(cookie => cookie.trim());
-        let opinionId = null;
-        for (const cookie of cookies) {
-            const [name, value] = cookie.split('=');
-            if (name === 'opinion_id') {
-                opinionId = value;
-                    break;
-            }
+    const cookies = cookieString.split(';').map(cookie => cookie.trim());
+    let opinionId = null;
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split('=');
+        if (name === 'opinion_id') {
+            opinionId = value;
+                break;
         }
+    }
+
+    function acessarJogoPorId(id) {
+        document.cookie = `game_id=${id}; path=/`;
+        window.location.href = 'http://localhost:1313/jogos/jogoporid';
+    }
+
 
     fetch(`http://localhost:8080/opinions/byid/${opinionId}`, {
             method: 'GET',
@@ -57,6 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (document.getElementById('gameOpinion')) {
                 document.getElementById('gameOpinion').innerText = gameData.opinion;
             }
+
+            const button = document.getElementById('button_acessar_jogo')
+
+            button.addEventListener('click', function() {
+                acessarJogoPorId(gameData.gameId);
+            });
         })
         .catch(error => {
             console.error('Erro:', error.message);
