@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
             button.addEventListener('click', function () {
                 currentPage = pageNumber;
-                fetchGames(pageNumber);
+                fetchOpinions(pageNumber);
             });
     
             paginationContainer.appendChild(button);

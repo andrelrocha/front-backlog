@@ -58,3 +58,20 @@
     text-align: left;
     min-width: 15rem;
 }
+
+.table-opinion {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.columnValue th,
+.columnValue td,
+.opinion th,
+.opinion td {
+    border: 1px solid #dcdcdc; /* cor cinza clara */
+    padding: 8px;
+}
+
+.opinion td {
+    vertical-align: top; /* Alinha o conteúdo da célula ao topo */
+}

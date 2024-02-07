@@ -8,20 +8,12 @@ document.getElementById('jogoForm').addEventListener('submit', function(event) {
     const jogoMetacritic = document.getElementById('jogoMetacritic').value;
     const jogoVontade = document.getElementById('jogoVontade').value;
     const jogoGenero = document.getElementById('jogoGenero').value;
-    const jogouOpcaoElement = document.querySelector('input[name="jogouOpcao"]:checked');
-
-    let jogouOpcaoValue = false;
-
-    if (jogouOpcaoElement) {
-        jogouOpcaoValue = jogouOpcaoElement.value === true;
-    }
 
     const jogoData = {
         name: jogoNome,
         length: jogoDuracao,
         metacritic: jogoMetacritic,
         excitement: jogoVontade,
-        played: jogouOpcaoValue,
         genre: jogoGenero
     };
 

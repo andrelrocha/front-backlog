@@ -13,11 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-    function acessarJogoPorId(id) {
-        document.cookie = `game_id=${id}; path=/`;
-        window.location.href = 'http://localhost:1313/jogos/jogoporid';
-    }
-
     fetch(`http://localhost:8080/opinions/byid/${opinionId}`, {
             method: 'GET',
             headers: {
@@ -62,12 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (document.getElementById('gameOpinion')) {
                 document.getElementById('gameOpinion').innerText = gameData.opinion;
             }
-
-            const button = document.getElementById('button_acessar_jogo')
-            
-            button.addEventListener('click', function() {
-                acessarJogoPorId(gameData.gameId);
-            });
         })
         .catch(error => {
             console.error('Erro:', error.message);
