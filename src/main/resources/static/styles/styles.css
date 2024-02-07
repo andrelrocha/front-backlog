@@ -68,10 +68,10 @@
 .columnValue td,
 .opinion th,
 .opinion td {
-    border: 1px solid #dcdcdc; /* cor cinza clara */
+    border: 1px solid #dcdcdc;
     padding: 8px;
 }
 
 .opinion td {
-    vertical-align: top; /* Alinha o conteúdo da célula ao topo */
+    vertical-align: top;
 }

@@ -15,5 +15,9 @@ public class OpiniaoController {
     public String getOpiniaoJogo() {
         return "opiniao/jogoopiniao";
     }
-    
+
+    @GetMapping("/opiniaojogo/editar") 
+    public String getOpiniaoJogoEditar() {
+        return "opiniao/updateopiniao";
+    }   
 }
