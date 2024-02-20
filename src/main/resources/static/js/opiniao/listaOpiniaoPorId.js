@@ -1,3 +1,39 @@
+function getOpinionGameImage(gameId) {
+    const token = localStorage.getItem('token');
+
+    const gameImage = document.getElementById('gameImage');
+
+    console.log(gameId)
+    console.log(token)
+
+    fetch(`http://localhost:8080/image/game/${gameId}`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+            }).then(response => {
+                if (!response.ok) {
+                    if (response.status === 400) {
+                        return response.text().then(errorMessage => {
+                            alert('Erro 400: ' + errorMessage);
+                            throw new Error(`Erro ${response.status}: ${errorMessage}`);
+                        });
+                    } else if (response.status === 401 || response.status === 403) {
+                        console.log(response.text());
+                        throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
+                    } 
+                }
+
+                return response.blob();
+            }).then(blob => {
+                const imageUrl = URL.createObjectURL(blob);
+                gameImage.src = imageUrl;
+            }).catch(error => {
+                console.error(error);
+            });
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
 
     const token = localStorage.getItem('token');
@@ -41,8 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(gameData => {
-            if (document.getElementById('opinionId')) {
-                document.getElementById('opinionId').innerText = gameData.id;
+            if (document.getElementById('gameId')) {
+                document.getElementById('gameId').innerText = gameData.gameId;
             }
             if (document.getElementById('gameNome')) {
                 document.getElementById('tituloPagina').innerText = gameData.name;
@@ -64,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('gameOpinion').innerText = gameData.opinion;
             }
 
+            getOpinionGameImage(gameData.gameId);
+
             const button = document.getElementById('button_acessar_jogo')
 
             button.addEventListener('click', function() {
@@ -74,5 +112,4 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Erro:', error.message);
             alert(error.message);
         });  
-
 });
