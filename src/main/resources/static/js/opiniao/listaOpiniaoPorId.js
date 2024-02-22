@@ -3,9 +3,6 @@ function getOpinionGameImage(gameId) {
 
     const gameImage = document.getElementById('gameImage');
 
-    console.log(gameId)
-    console.log(token)
-
     fetch(`http://localhost:8080/image/game/${gameId}`, {
             method: 'GET',
             headers: {
@@ -27,7 +24,7 @@ function getOpinionGameImage(gameId) {
                 return response.blob();
             }).then(blob => {
                 const imageUrl = URL.createObjectURL(blob);
-                gameImage.src = imageUrl;
+                gameImage.innerHTML = '<img src="' + imageUrl + '" alt="Imagem do Jogo">';
             }).catch(error => {
                 console.error(error);
             });
