@@ -65,12 +65,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             for (const opinionData of opinionsData) {
                 const row = document.createElement('tr');
+                row.classList.add('opinionRow');
 
                 const nameCell = document.createElement('td');
                 nameCell.innerText = opinionData.name;
+                nameCell.classList.add('gameName');
                 row.appendChild(nameCell);
 
                 nameCell.addEventListener('click', function(event) {
+                    abrirPaginaPorId(opinionData.id);
+
                     if (event.ctrlKey) {
                         abrirPaginaPorIdInNewTab(opinionData.id);
                     }
@@ -92,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 metacriticCell.innerText = opinionData.metacritic;
                 row.appendChild(metacriticCell);
 
+                /*
                 const acaoCell = document.createElement('td');
                 const button = document.createElement('button');
                 button.classList.add('btn', 'btn-warning', 'btn-lg', 'p-0', 'rounded');
@@ -103,7 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 acaoCell.appendChild(button);
-                row.appendChild(acaoCell);       
+                row.appendChild(acaoCell);     
+                */  
 
                 tableBody.appendChild(row);
             }

@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var navbarMiddle = document.createElement("div");
         navbarMiddle.className = "navbar-middle";
-        navbarMiddle.textContent = "Backlog App";
+        navbarMiddle.textContent += "Backlog App";
 
         var navbarRight = document.createElement("div");
         navbarRight.className = "navbar-right";
@@ -45,6 +45,11 @@ document.addEventListener("DOMContentLoaded", function () {
         header.appendChild(nav);
 
         document.body.insertBefore(header, document.body.firstChild);
+
+        var faviconLink = document.createElement("link");
+        faviconLink.rel = "icon";
+        faviconLink.href = "/images/icon.svg";
+        document.head.appendChild(faviconLink);
     }
 
     generateHeader();

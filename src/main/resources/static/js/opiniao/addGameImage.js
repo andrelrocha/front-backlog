@@ -1,6 +1,4 @@
-document.getElementById('addGameImage').addEventListener('click', function () {
-    console.log('Add game image chamado');
-    
+document.getElementById('addGameImage').addEventListener('click', function () {    
     const token = localStorage.getItem('token');
 
     var input = document.createElement('input');
@@ -12,12 +10,10 @@ document.getElementById('addGameImage').addEventListener('click', function () {
             var formData = new FormData();
             formData.append('file', file);
 
-            var gameId = 702;
+            const gameId = document.getElementById('gameId').innerText;
+            console.log(gameId);
 
-            // Replace with your server endpoint
-            var endpoint = 'http://localhost:8080/image/create/' + gameId;
-
-            fetch(endpoint, {
+            fetch(`http://localhost:8080/image/create/${gameId}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -34,6 +30,7 @@ document.getElementById('addGameImage').addEventListener('click', function () {
                     } else if (response.status === 401 || response.status === 403) {
                         throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
                     } else {
+                        console.error(response);
                         alert('Erro ao buscar informações do jogo. Por favor, tente novamente.');
                     }
                 } else {
