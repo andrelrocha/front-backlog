@@ -197,9 +197,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 const acaoCell = document.createElement('td');
                 const button = document.createElement('button');
-                button.classList.add('btn', 'btn-warning', 'btn-lg', 'p-0', 'rounded');
-                button.style.width = '30px';
-                button.style.height = '30px';
+                button.classList.add('btn', 'btn-light');
+
+                //importando lib de icon
+                const linkElement = document.createElement('link');
+                linkElement.rel = 'stylesheet';
+                linkElement.href = 'http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css';
+                document.head.appendChild(linkElement);
+
+                button.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i>';
 
                 button.addEventListener('click', function() {
                     const escolha = prompt("Escolha 'editar', 'apagar' ou 'acabei':");

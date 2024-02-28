@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
         navbarLeft.className = "navbar-left";
 
         var links = [
-            { href: "http://localhost:1313/jogando", text: "Ir para Jogando" },
             { href: "http://localhost:1313/jogos", text: "Ir para Jogos" },
+            { href: "http://localhost:1313/jogando", text: "Ir para Jogando" },
             { href: "http://localhost:1313/opinioes", text: "Ir para Opiniões" }
         ];
 
