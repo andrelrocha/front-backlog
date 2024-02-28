@@ -24,4 +24,9 @@ public class JogoController {
     public String editarJogo() {
         return "jogo/update";
     }
+
+    @GetMapping("/jogos/teste")
+    public String teste() {
+        return "teste";
+    }
 }

@@ -45,9 +45,6 @@
 
 .opinion td {
     text-align: justify;
-
-    //FAZER COM QUE OCUPE A TELA INTEIRA OU AO MENOS CENTRALIZADO
-    //MARGIN AO FINAL DA TELA DE OPINIÃO
 }
 
 .columnValue {
@@ -90,6 +87,8 @@
     //margin: auto // centraliza a img
 }
 
+//LISTAGEM DE OPINIÕES
+
 .opinionRow .gameName {
     cursor: pointer;
 }
@@ -116,4 +115,3 @@
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
-
