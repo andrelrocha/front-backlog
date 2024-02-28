@@ -28,7 +28,49 @@
                         <!-- adiciona as linhas da tabela -->
                     </tbody>
                 </table>
-                <a href="http://localhost:1313/jogos/criar" class="btn btn-primary btn-lg mt-3">Adicionar um Jogo</a>
+                <button type="button" class="btn btn-primary btn-lg mt-3" data-bs-toggle="modal" data-bs-target="#criarJogoModal">
+                    Criar Jogo
+                </button>
+        
+                <!-- Modal de criação de jogo -->
+                <div class="modal fade" id="criarJogoModal" tabindex="-1" aria-labelledby="criarJogoModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="criarJogoModalLabel">Criação de Jogo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="jogoForm" style="width:100%; max-width: 500px; margin: 0 auto;">
+                                    <div class="form-group">
+                                        <label class="form-label">Nome</label>
+                                        <input type="text" id="jogoNome" class="form-control" placeholder="Digite o nome" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Duracao</label>
+                                        <input type="number" id="jogoDuracao" class="form-control" placeholder="Digite a duração" required>
+                                    </div>                          
+                                    <div class="form-group">
+                                        <label class="form-label">Nota Metacritic</label>
+                                        <input type="number" id="jogoMetacritic" class="form-control" placeholder="Digite a nota do Metacritic" required>
+                                    </div>                           
+                                    <div class="form-group">
+                                        <label class="form-label">Vontade de jogar</label>
+                                        <input type="number" id="jogoVontade" class="form-control" placeholder="Digite a vontade de jogar" required>
+                                    </div>                 
+                                    <div class="form-group">
+                                        <label class="form-label">Gênero</label>
+                                        <input type="text" id="jogoGenero" class="form-control" placeholder="Digite ao genero" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button id="submitButton" class="btn btn-primary" type="submit">Criar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <button id="sugestaoJogo" class="btn btn-primary btn-lg mt-3">Me sugira um Jogo!</button>
                 <button id="downloadXLS" class="btn btn-primary btn-lg mt-3">Baixar XLS dos Jogos</button>
@@ -50,6 +92,8 @@
     <script src="/js/jogo/utils/sugestaoJogo.js"></script>
     <script src="/js/jogo/listar/paginacaoJogos.js"></script>
     <script src="/js/jogo/listar/listaJogosPorNome.js"></script>
+    <script src="/js/jogo/criar/createJogo.js"></script>
     <script src="/js/jogo/utils/downloadXLS.js"></script>
     <script src="/js/validaJWT.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </html>

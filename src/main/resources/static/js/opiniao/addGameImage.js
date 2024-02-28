@@ -3,7 +3,7 @@ document.getElementById('addGameImage').addEventListener('click', function () {
 
     var input = document.createElement('input');
     input.type = 'file';
-    input.accept = '.jpeg';
+    input.accept = '.jpg';
     input.onchange = function (e) {
         var file = e.target.files[0];
         if (file) {
@@ -11,7 +11,6 @@ document.getElementById('addGameImage').addEventListener('click', function () {
             formData.append('file', file);
 
             const gameId = document.getElementById('gameId').innerText;
-            console.log(gameId);
 
             fetch(`http://localhost:8080/image/create/${gameId}`, {
                 method: 'POST',
