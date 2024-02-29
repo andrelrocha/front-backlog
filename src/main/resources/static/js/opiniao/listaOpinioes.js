@@ -96,21 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 metacriticCell.innerText = opinionData.metacritic;
                 row.appendChild(metacriticCell);
 
-                /*
-                const acaoCell = document.createElement('td');
-                const button = document.createElement('button');
-                button.classList.add('btn', 'btn-warning', 'btn-lg', 'p-0', 'rounded');
-                button.style.width = '30px';
-                button.style.height = '30px';
-
-                button.addEventListener('click', function() {
-                    abrirPaginaPorId(opinionData.id);
-                });
-
-                acaoCell.appendChild(button);
-                row.appendChild(acaoCell);     
-                */  
-
                 tableBody.appendChild(row);
             }
 
