@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap');
 
+:root {
+    --cor-principal: hsl(180, 100%, 90%);
+    --cor-hover: #191970;
+
+    --fonte-principal: 'Ubuntu', sans-serif;
+    --fonte-peso-normal: 400;
+    --fonte-peso-negrito: 700;
+}
+
 #navHeader {
     padding: 10px;
 }
@@ -24,14 +33,14 @@
     transform: translateX(-50%);
     z-index: 20;
 
-    font-weight: 700;
+    font-weight: var(--fonte-peso-negrito);
     font-size: 2rem;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: var(--fonte-principal);
 }
 
 #tituloPagina {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 400;
+    font-family: var(--fonte-principal);
+    font-weight: var(--fonte-peso-normal);
 }
 
 
@@ -101,7 +110,7 @@
 }
 
 .opinionRow:hover td {
-    background-color: hsl(180, 100%, 95%);
+    background-color: var(--cor-principal   );
 }
 
 .opinionRow:hover td:first-child {
@@ -114,3 +123,73 @@
     border-bottom-right-radius: 10px;
 }
 
+//NAVIGATION VIEW AFTER LOGIN
+#navigationMenu {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+#opinionsNavigation {
+    height: 50vh;
+    width: 60vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: hsl(180, 100%, 90%);
+    border-radius: 16px;
+}
+
+#opinionsNavigation h1 {
+    flex-grow: 1; /* Faz com que o h1 ocupe o espaço disponível entre as divs laterais */
+    text-align: center;
+    font-weight: var(--fonte-peso-negrito);
+    font-size: 2rem;
+    font-family: var(--fonte-principal);
+}
+
+#opinionsNavigation:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+    background-color: var(--cor-hover);
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+#opinionsNavigation:hover h1 {
+    font-weight: var(--fonte-peso-normal);
+    color: white;
+}
+
+
+#columnControllers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+}
+
+
+#columnControllers img {
+    height: 10vh;
+    margin: 1rem;
+}
+
+#gamerImage {
+    height: 45vh;
+}
+
+
+
+/* FALTA AJEITAR OS BOX DE BAIXO E DEIXAREM OS 3 ESTILIZADOS*/
+#containerNavAux {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+}
