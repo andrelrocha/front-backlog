@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var nav = document.createElement("nav");
         nav.id = "navHeader";
         nav.className = "navbar navbar-light justify-content-between fs-3";
-        nav.style.backgroundColor = "#696D7D";
         nav.style.position = "relative";
 
         var navbarLeft = document.createElement("div");
@@ -27,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var navbarMiddle = document.createElement("div");
         navbarMiddle.className = "navbar-middle";
+        navbarMiddle.id = "nomeAppNavBar";
         navbarMiddle.textContent += "Backlog App";
 
         var navbarRight = document.createElement("div");

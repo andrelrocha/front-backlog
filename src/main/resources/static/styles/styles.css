@@ -3,15 +3,30 @@
 :root {
     --cor-principal: hsl(180, 100%, 90%);
     --cor-hover: #191970;
+    --cor-branco: #F9F6EE;
 
     --fonte-principal: 'Ubuntu', sans-serif;
     --fonte-peso-normal: 400;
     --fonte-peso-negrito: 700;
 }
 
+body {
+    background-color: var(--cor-branco);
+}
+
+th {
+    background-color: var(--cor-branco) !important;
+}
+
+td {
+    background-color: var(--cor-branco) !important;
+}
+
 #navHeader {
     padding: 10px;
+    background-color: var(--cor-principal);
 }
+
 
 /* Estilos específicos para os elementos dentro do navHeader */
 .navbar-left,
@@ -110,7 +125,7 @@
 }
 
 .opinionRow:hover td {
-    background-color: var(--cor-principal   );
+    background-color: var(--cor-principal) !important;
 }
 
 .opinionRow:hover td:first-child {
@@ -161,7 +176,7 @@
 
 #opinionsNavigation:hover h1 {
     font-weight: var(--fonte-peso-normal);
-    color: white;
+    color: var(--cor-branco);
 }
 
 
@@ -185,6 +200,9 @@
 
 
 
+/* FALTA AJEITAR OS BOX DE BAIXO E DEIXAREM OS 3 ESTILIZADOS*/
+/* FALTA AJEITAR OS BOX DE BAIXO E DEIXAREM OS 3 ESTILIZADOS*/
+/* FALTA AJEITAR OS BOX DE BAIXO E DEIXAREM OS 3 ESTILIZADOS*/
 /* FALTA AJEITAR OS BOX DE BAIXO E DEIXAREM OS 3 ESTILIZADOS*/
 #containerNavAux {
     display: flex;
