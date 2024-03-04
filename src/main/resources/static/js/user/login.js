@@ -32,7 +32,7 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     })
     .then(data => {
         localStorage.setItem('token', data.token); 
-        window.location.href = `http://localhost:1313/jogos`;
+        window.location.href = `http://localhost:1313/afterlogin`;
     })
     .catch(error => {
         console.error('Erro:', error);

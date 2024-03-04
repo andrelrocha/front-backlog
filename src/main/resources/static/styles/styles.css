@@ -55,7 +55,7 @@ td {
 
 #tituloPagina {
     font-family: var(--fonte-principal);
-    font-weight: var(--fonte-peso-normal);
+    font-weight: var(--fonte-peso-negrito);
 }
 
 
@@ -108,7 +108,7 @@ td {
     height: auto; /* Permite que a altura seja ajustada automaticamente para manter a proporção da imagem */
     display: block; /* Garante que a imagem é exibida como um bloco, para evitar espaços em branco indesejados */
     float: right;
-    //margin: auto // centraliza a img
+    /*margin: auto // centraliza a img */
 }
 
 .opinionRow .gameName {
@@ -148,7 +148,7 @@ td {
 
 #opinionsNavigation {
     height: 50vh;
-    width: 60vw;
+    width: 80%;
 
     display: flex;
     justify-content: center;
@@ -156,10 +156,12 @@ td {
 
     background-color: hsl(180, 100%, 90%);
     border-radius: 16px;
+
+    margin: auto;
 }
 
 #opinionsNavigation h1 {
-    flex-grow: 1; /* Faz com que o h1 ocupe o espaço disponível entre as divs laterais */
+    flex-grow: 1;
     text-align: center;
     font-weight: var(--fonte-peso-negrito);
     font-size: 2rem;
@@ -179,7 +181,6 @@ td {
     color: var(--cor-branco);
 }
 
-
 #columnControllers {
     display: flex;
     flex-direction: column;
@@ -187,7 +188,6 @@ td {
     justify-content: center;
     height: 80%;
 }
-
 
 #columnControllers img {
     height: 10vh;
@@ -198,16 +198,55 @@ td {
     height: 45vh;
 }
 
-
-
-/* FALTA AJEITAR OS BOX DE BAIXO E DEIXAREM OS 3 ESTILIZADOS*/
-/* FALTA AJEITAR OS BOX DE BAIXO E DEIXAREM OS 3 ESTILIZADOS*/
-/* FALTA AJEITAR OS BOX DE BAIXO E DEIXAREM OS 3 ESTILIZADOS*/
-/* FALTA AJEITAR OS BOX DE BAIXO E DEIXAREM OS 3 ESTILIZADOS*/
 #containerNavAux {
+    width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     flex-direction: row;
+
+    margin: auto;
+}
+
+#gamesNavigation,
+#playingNavigation {
+    flex-grow: 1;
+    margin-top: 4rem;
+    background-color: hsl(180, 100%, 90%);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#gamesNavigation {
+    margin-right: 1rem;
+}
+
+#playingNavigation {
+    margin-left: 1rem;
+}
+
+#gamesNavigation:hover,
+#playingNavigation:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+    background-color: var(--cor-hover);
+    color: var(--cor-branco);
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+#gamesNavigation h1,
+#playingNavigation h1 {
+    text-align: center;
+    font-weight: var(--fonte-peso-negrito);
+    font-size: 2rem;
+    font-family: var(--fonte-principal);
+}
+
+#gamesNavigation:hover h1,
+#playingNavigation:hover h1 {
+    font-weight: var(--fonte-peso-normal);
 }
