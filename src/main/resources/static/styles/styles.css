@@ -41,9 +41,10 @@ td {
 #linkNavMenu {
     position: relative;
     z-index: 5;
-    background-color: var(--cor-branco) !important;
+    background-color: var(--cor-principal) !important;
     font-weight: var(--fonte-peso-normal);
     display: none;
+    border: 1px solid var(--cor-hover);
 }
 
 #linkNavMenu:hover {
