@@ -38,6 +38,65 @@ td {
     margin-left: 1.5rem;
 }
 
+#linkNavMenu {
+    position: relative;
+    z-index: 5;
+    background-color: var(--cor-branco) !important;
+    font-weight: var(--fonte-peso-normal);
+    display: none;
+}
+
+#linkNavMenu:hover {
+    background-color: var(--cor-hover) !important;
+    color: var(--cor-branco);
+    transition: 0.3s;
+}
+
+#barsButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer; 
+    height: 10%;
+}
+
+#barsButton:hover {
+    transform: scale(1.05);
+}
+
+#modal {
+    position: fixed;
+    z-index: 100;
+    border-radius: 18px;
+    background-color: transparent;
+    margin: 1rem;
+    display: none;
+}
+
+#modal a {
+    text-decoration: none;
+    font-family: var(--fonte-principal);
+    font-weight: var(--fonte-peso-normal);
+
+    background-color: var(--cor-principal);
+}
+
+#modal a:hover {
+    background-color: var(--cor-hover);
+    color: var(--cor-branco);
+    transition: 0.3s;
+}
+
+.link-animate {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.link-animate.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 .navbar-right {
     margin-right: 2rem;
 }
@@ -57,7 +116,6 @@ td {
     font-family: var(--fonte-principal);
     font-weight: var(--fonte-peso-negrito);
 }
-
 
 //view opiniao jogo por id
 .opinion {
@@ -211,21 +269,24 @@ td {
 #gamesNavigation,
 #playingNavigation {
     flex-grow: 1;
-    margin-top: 4rem;
+    margin-top: 3rem;
     background-color: hsl(180, 100%, 90%);
     border-radius: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 #gamesNavigation {
-    margin-right: 1rem;
+    margin-right: 2rem;
 }
 
 #playingNavigation {
-    margin-left: 1rem;
+    margin-left: 2rem;
 }
 
 #gamesNavigation:hover,

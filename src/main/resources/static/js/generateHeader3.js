@@ -1,10 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     function generateHeader() {
-        const linkElement = document.createElement('link');
-        linkElement.rel = 'stylesheet';
-        linkElement.href = 'http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css';
-        document.head.appendChild(linkElement);
 
+        
         var header = document.createElement("header");
 
         var nav = document.createElement("nav");
@@ -15,26 +12,19 @@ document.addEventListener("DOMContentLoaded", function () {
         var navbarLeft = document.createElement("div");
         navbarLeft.className = "navbar-left";
 
-        var barsButton = document.createElement("button");
-        barsButton.id = "barsButton";
-        barsButton.innerHTML = '<i class="fa fa-bars" aria-hidden="true"></i>';
-        navbarLeft.appendChild(barsButton);
-
         var links = [
             { href: "http://localhost:1313/jogos", text: "Ir para Jogos" },
             { href: "http://localhost:1313/jogando", text: "Ir para Jogando" },
             { href: "http://localhost:1313/opinioes", text: "Ir para Opiniões" }
         ];
+
         links.forEach(function (linkData) {
             var link = document.createElement("a");
             link.href = linkData.href;
-            link.className = "btn btn-light me-2";
+            link.className = "btn btn-success me-2";
             link.textContent = linkData.text;
-            link.id = "linkNavMenu";
             navbarLeft.appendChild(link);
         });
-
-        barsButton.addEventListener("click", controlLinks);
 
         var navbarMiddle = document.createElement("div");
         navbarMiddle.className = "navbar-middle";
@@ -49,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         logoutButton.className = "btn btn-danger ms-2";
         logoutButton.textContent = "Sair";
         navbarRight.appendChild(logoutButton);
-    
+
         nav.appendChild(navbarLeft);
         nav.appendChild(navbarMiddle);
         nav.appendChild(navbarRight);
@@ -64,30 +54,11 @@ document.addEventListener("DOMContentLoaded", function () {
         document.head.appendChild(faviconLink);
     }
 
-    function controlLinks() {
-        var links = document.querySelectorAll("#linkNavMenu");
-
-        links.forEach(function(link, index) {
-            link.style.display = "block";
-            link.style.transition = "opacity 0.4s ease-in-out";
-            link.style.opacity = "0";
-            setTimeout(function() {
-                link.style.opacity = "1";
-            }, index * 100);
-        });
-
-        if (barsButton.innerHTML.includes("fa-bars")) {
-            barsButton.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
-        } else {
-            barsButton.innerHTML = '<i class="fa fa-bars" aria-hidden="true"></i>';
-        }
-    }
-
     generateHeader();
 
     const logoutButton = document.getElementById('logoutButton');
 
-    logoutButton.addEventListener('click', function () {
+    logoutButton.addEventListener('click', function() {
         localStorage.clear();
         window.location.href = 'http://localhost:1313/login';
     });
