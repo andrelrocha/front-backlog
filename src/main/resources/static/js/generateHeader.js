@@ -67,18 +67,28 @@ document.addEventListener("DOMContentLoaded", function () {
     function controlLinks() {
         var links = document.querySelectorAll("#linkNavMenu");
 
-        links.forEach(function(link, index) {
-            link.style.display = "block";
-            link.style.transition = "opacity 0.4s ease-in-out";
-            link.style.opacity = "0";
-            setTimeout(function() {
-                link.style.opacity = "1";
-            }, index * 100);
-        });
-
         if (barsButton.innerHTML.includes("fa-bars")) {
             barsButton.innerHTML = '<i class="fa fa-times" aria-hidden="true"></i>';
+            links.forEach(function(link, index) {
+                link.style.display = "block";
+                link.style.transition = "opacity 0.4s ease-in-out";
+                link.style.opacity = "0";
+                setTimeout(function() {
+                    link.style.opacity = "1";
+                }, index * 100);
+            });
         } else {
+            for (var i = links.length - 1; i >= 0; i--) {
+                (function (link, index) {
+                    setTimeout(function () {
+                        link.style.transition = "opacity 0.4s ease-in-out";
+                        link.style.opacity = "0";
+                        setTimeout(function () {
+                            link.style.display = "none";
+                        }, 200);
+                    }, (links.length - 1 - index) * 100);
+                })(links[i], i);
+            }
             barsButton.innerHTML = '<i class="fa fa-bars" aria-hidden="true"></i>';
         }
     }
