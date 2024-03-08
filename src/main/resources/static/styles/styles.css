@@ -164,10 +164,10 @@ td {
     max-width: 600px; 
     max-height: 600px; 
     width: auto; /* Permite que a largura seja ajustada automaticamente para manter a proporção da imagem */
-    height: auto; /* Permite que a altura seja ajustada automaticamente para manter a proporção da imagem */
+    height: auto; /* Permite que a altura seja ajustada automaticamente para manter a proporção da img */
     display: block; /* Garante que a imagem é exibida como um bloco, para evitar espaços em branco indesejados */
     float: right;
-    /*margin: auto // centraliza a img */
+    /*margin: auto // Centraliza a img */
 }
 
 .opinionRow .gameName {

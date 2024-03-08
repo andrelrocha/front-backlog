@@ -70,12 +70,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 nameCell.innerText = jogoData.name;
                 row.appendChild(nameCell);
 
-                nameCell.addEventListener('click', function(event) {
-                    if (event.ctrlKey) {
-                        abrirPaginaPorIdInNewTab(jogoData.id);
-                    }
-                });
-
                 const durationCell = document.createElement('td');
                 durationCell.innerText = jogoData.length;
                 row.appendChild(durationCell);
@@ -108,8 +102,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 button.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i>';
 
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function(event) {
+                    if (event.ctrlKey) {
+                        abrirPaginaPorIdInNewTab(jogoData.id);
+                        return;
+                    }
+
                     abrirPaginaPorId(jogoData.id);
+                });                
+
+                button.addEventListener('contextmenu', function(event) {
+                    event.preventDefault();
+                    abrirPaginaPorIdInNewTab(jogoData.id);
                 });
 
                 acaoCell.appendChild(button);

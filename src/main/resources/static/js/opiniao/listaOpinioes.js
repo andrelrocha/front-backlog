@@ -73,11 +73,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 row.appendChild(nameCell);
 
                 nameCell.addEventListener('click', function(event) {
-                    abrirPaginaPorId(opinionData.id);
-
                     if (event.ctrlKey) {
                         abrirPaginaPorIdInNewTab(opinionData.id);
+                        return;
                     }
+
+                    abrirPaginaPorId(opinionData.id);
+                });
+
+                nameCell.addEventListener('contextmenu', function(event) {
+                    event.preventDefault();
+                    abrirPaginaPorIdInNewTab(opinionData.id);
                 });
 
                 const consoleCell = document.createElement('td');
