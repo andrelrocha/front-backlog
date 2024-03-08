@@ -142,7 +142,51 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => {
             console.error('Erro:', error);
-            alert('Houve um erro ao processar a solicitação. Por favor, tente novamente.');
+            alert('Houve um erro ao processar a solicitação de criar uma opinião para o jogo. Por favor, tente novamente.');
+        });
+    }
+
+    function criarDropped(gameId) {
+        const note = prompt("Digite a nota do jogo:");
+        const reason = prompt("Digite as razões para ter dropado o jogo:");   
+
+        const droppedData = JSON.stringify({
+            gameId,
+            note,
+            reason
+        });
+
+        if (note === null || reason === null) {
+            alert('Ação cancelada.');
+            throw new Error('Ação cancelada.');
+        }
+
+        fetch('http://localhost:8080/droppedgames/addgame', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: droppedData
+        })
+        .then(response => {
+            if (response.status === 201) {
+                alert('Jogo dropado com sucesso!');
+                //window.location.href = 'http://localhost:1313/dropados';
+                return response.json();
+            } else if (response.status === 400) {
+                response.text().then(errorMessage => {
+                    alert(`Erro ${response.status}: ${errorMessage}`);
+                });
+            } else if (response.status === 401 || response.status === 403) {
+                alert('Erro 401: Você não está autorizado para a operação desejada');
+            }  else {
+                alert('Erro ao dropar o jogo. Por favor, tente novamente.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+            alert('Houve um erro ao processar a solicitação para dropar um jogo. Por favor, tente novamente.');
         });
     }
     
@@ -208,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 button.innerHTML = '<i class="fa fa-plus-circle" aria-hidden="true"></i>';
 
                 button.addEventListener('click', function() {
-                    const escolha = prompt("Escolha 'editar', 'apagar' ou 'acabei':");
+                    const escolha = prompt("Escolha 'editar', 'apagar', 'acabei' ou 'dropei':");
 
                     if (escolha === 'editar') {
                         editarData(jogoData.id);
@@ -216,6 +260,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         apagarData(jogoData.id);
                     } else if(escolha == 'acabei') {
                         criarOpiniao(jogoData.gameId);
+                    } else if(escolha == 'dropei') {
+                        criarDropped(jogoData.gameId);
                     } else {
                         alert('Ação cancelada ou inválida.');
                         console.log('Ação cancelada ou inválida.');
