@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    function criarOpiniao(gameId) {
+    function criarFinalizado(gameId) {
         const note = prompt("Digite a nota do jogo:");
         const opinion = prompt("Digite sua opinião sobre o jogo:");
 
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => {
             if (response.status === 201) {
                 alert('Jogo dropado com sucesso!');
-                //window.location.href = 'http://localhost:1313/dropados';
+                window.location.href = 'http://localhost:1313/dropados';
                 return response.json();
             } else if (response.status === 400) {
                 response.text().then(errorMessage => {
@@ -191,6 +191,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     
 
+    
     function fetchGames(pageNumber) {
         fetch(`http://localhost:8080/playing/pageable?page=${pageNumber}`, {
             method: 'GET',
@@ -259,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     } else if (escolha === 'apagar') {
                         apagarData(jogoData.id);
                     } else if(escolha == 'acabei') {
-                        criarOpiniao(jogoData.gameId);
+                        criarFinalizado(jogoData.gameId);
                     } else if(escolha == 'dropei') {
                         criarDropped(jogoData.gameId);
                     } else {

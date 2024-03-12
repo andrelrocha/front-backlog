@@ -14,4 +14,9 @@ public class DropadoController {
     public String getJogoDropadoPorID() {
         return "dropado/jogodropado";
     }
+    
+    @GetMapping("/jogodropado/editar")
+    public String updateJogoDropado() {
+        return "dropado/updatedropado";
+    }
 }

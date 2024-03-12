@@ -168,10 +168,6 @@ td {
 }
 
 //LISTAGEM DE JOGOS FINALIZADOS
-#tableGameName:hover {
-    cursor: pointer !important;
-}
-
 #table-dropado {
     border-collapse: collapse;
 }

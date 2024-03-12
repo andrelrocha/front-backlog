@@ -63,35 +63,40 @@ document.addEventListener('DOMContentLoaded', function() {
             const tableBody = document.getElementById('dropados-list');
             tableBody.innerHTML = '';
             
-            for (const finalizadoData of dropadosData) {
+            for (const dropadoData of dropadosData) {
                 const row = document.createElement('tr');
                 row.classList.add('dropadosRow');
 
                 const nameCell = document.createElement('td');
-                nameCell.innerText = finalizadoData.name;
+                nameCell.innerText = dropadoData.name;
                 nameCell.classList.add('gameName');
+                nameCell.style.cursor = 'pointer';
                 row.appendChild(nameCell);
 
                 nameCell.addEventListener('click', function(event) {
                     if (event.ctrlKey) {
-                        abrirPaginaPorIdInNewTab(finalizadoData.id);
+                        abrirPaginaPorIdInNewTab(dropadoData.id);
                         return;
                     }
 
-                    abrirPaginaPorId(finalizadoData.id);
+                    abrirPaginaPorId(dropadoData.id);
                 });
 
                 nameCell.addEventListener('contextmenu', function(event) {
                     event.preventDefault();
-                    abrirPaginaPorIdInNewTab(finalizadoData.id);
+                    abrirPaginaPorIdInNewTab(dropadoData.id);
                 });
 
                 const consoleCell = document.createElement('td');
-                consoleCell.innerText = finalizadoData.console;
+                consoleCell.innerText = dropadoData.console;
                 row.appendChild(consoleCell);
 
+                const genreCell = document.createElement('td');
+                genreCell.innerText = dropadoData.genre;
+                row.appendChild(genreCell);
+
                 const noteCell = document.createElement('td');
-                noteCell.innerText = finalizadoData.note;
+                noteCell.innerText = dropadoData.note;
                 row.appendChild(noteCell);
 
                 tableBody.appendChild(row);
