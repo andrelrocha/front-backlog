@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
             button.addEventListener('click', function () {
                 currentPage = pageNumber;
-                fetchFinalizados(pageNumber);
+                fetchDropados(pageNumber);
             });
     
             paginationContainer.appendChild(button);
@@ -29,18 +29,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function abrirPaginaPorId(id) {
-        document.cookie = `finished_id=${id}; path=/`;
-        window.location.href = 'http://localhost:1313/jogofinalizado';
+        document.cookie = `dropped_id=${id}; path=/`;
+        window.location.href = 'http://localhost:1313/jogodropado';
     }
 
     
     function abrirPaginaPorIdInNewTab(id) {
-        document.cookie = `finished_id=${id}; path=/`;
-        window.open('http://localhost:1313/jogofinalizado', '_blank');
+        document.cookie = `dropped_id=${id}; path=/`;
+        window.open('http://localhost:1313/jogodropado', '_blank');
     }
 
-    function fetchFinalizados(pageNumber) {
-        fetch(`http://localhost:8080/finished?page=${pageNumber}`, {
+    function fetchDropados(pageNumber) {
+        fetch(`http://localhost:8080/droppedgames?page=${pageNumber}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -58,14 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(responseData => {
-            const finalizadosData = responseData.content;
+            const dropadosData = responseData.content;
 
-            const tableBody = document.getElementById('finalizados-list');
+            const tableBody = document.getElementById('dropados-list');
             tableBody.innerHTML = '';
             
-            for (const finalizadoData of finalizadosData) {
+            for (const finalizadoData of dropadosData) {
                 const row = document.createElement('tr');
-                row.classList.add('finalizadosRow');
+                row.classList.add('dropadosRow');
 
                 const nameCell = document.createElement('td');
                 nameCell.innerText = finalizadoData.name;
@@ -90,17 +90,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 consoleCell.innerText = finalizadoData.console;
                 row.appendChild(consoleCell);
 
-                const genreCell = document.createElement('td');
-                genreCell.innerText = finalizadoData.genre;
-                row.appendChild(genreCell);
-
                 const noteCell = document.createElement('td');
                 noteCell.innerText = finalizadoData.note;
                 row.appendChild(noteCell);
-
-                const metacriticCell = document.createElement('td');
-                metacriticCell.innerText = finalizadoData.metacritic;
-                row.appendChild(metacriticCell);
 
                 tableBody.appendChild(row);
             }
@@ -114,6 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    fetchFinalizados(0);
+    fetchDropados(0);
 
 });

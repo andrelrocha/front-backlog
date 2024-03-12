@@ -121,12 +121,12 @@ td {
     text-align: right;
 }
 
-.table-opinion th {
+.table-finalizado th {
     text-align: left;
     min-width: 15rem;
 }
 
-.table-opinion {
+.table-finalizado {
     border-collapse: collapse;
     width: 100%;
 }

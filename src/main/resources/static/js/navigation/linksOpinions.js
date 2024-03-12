@@ -7,6 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     droppedNavigation.addEventListener('click', function () {
-        window.location.href = '/droppados';
+        window.location.href = '/dropados';
     });
 });
