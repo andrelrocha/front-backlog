@@ -29,18 +29,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function abrirPaginaPorId(id) {
-        document.cookie = `opinion_id=${id}; path=/`;
-        window.location.href = 'http://localhost:1313/opiniaojogo';
+        document.cookie = `finished_id=${id}; path=/`;
+        window.location.href = 'http://localhost:1313/jogofinalizado';
     }
 
     
     function abrirPaginaPorIdInNewTab(id) {
-        document.cookie = `opinion_id=${id}; path=/`;
-        window.open('http://localhost:1313/opiniaojogo', '_blank');
+        document.cookie = `finished_id=${id}; path=/`;
+        window.open('http://localhost:1313/jogofinalizado', '_blank');
     }
 
-    function fetchOpinions(pageNumber) {
-        fetch(`http://localhost:8080/opinions?page=${pageNumber}`, {
+    function fetchFinalizados(pageNumber) {
+        fetch(`http://localhost:8080/finished?page=${pageNumber}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -58,48 +58,48 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(responseData => {
-            const opinionsData = responseData.content;
+            const finalizadosData = responseData.content;
 
-            const tableBody = document.getElementById('opinion-list');
+            const tableBody = document.getElementById('finalizados-list');
             tableBody.innerHTML = '';
             
-            for (const opinionData of opinionsData) {
+            for (const finalizadoData of finalizadosData) {
                 const row = document.createElement('tr');
-                row.classList.add('opinionRow');
+                row.classList.add('finalizadosRow');
 
                 const nameCell = document.createElement('td');
-                nameCell.innerText = opinionData.name;
+                nameCell.innerText = finalizadoData.name;
                 nameCell.classList.add('gameName');
                 row.appendChild(nameCell);
 
                 nameCell.addEventListener('click', function(event) {
                     if (event.ctrlKey) {
-                        abrirPaginaPorIdInNewTab(opinionData.id);
+                        abrirPaginaPorIdInNewTab(finalizadoData.id);
                         return;
                     }
 
-                    abrirPaginaPorId(opinionData.id);
+                    abrirPaginaPorId(finalizadoData.id);
                 });
 
                 nameCell.addEventListener('contextmenu', function(event) {
                     event.preventDefault();
-                    abrirPaginaPorIdInNewTab(opinionData.id);
+                    abrirPaginaPorIdInNewTab(finalizadoData.id);
                 });
 
                 const consoleCell = document.createElement('td');
-                consoleCell.innerText = opinionData.console;
+                consoleCell.innerText = finalizadoData.console;
                 row.appendChild(consoleCell);
 
                 const genreCell = document.createElement('td');
-                genreCell.innerText = opinionData.genre;
+                genreCell.innerText = finalizadoData.genre;
                 row.appendChild(genreCell);
 
                 const noteCell = document.createElement('td');
-                noteCell.innerText = opinionData.note;
+                noteCell.innerText = finalizadoData.note;
                 row.appendChild(noteCell);
 
                 const metacriticCell = document.createElement('td');
-                metacriticCell.innerText = opinionData.metacritic;
+                metacriticCell.innerText = finalizadoData.metacritic;
                 row.appendChild(metacriticCell);
 
                 tableBody.appendChild(row);
@@ -114,6 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    fetchOpinions(0);
+    fetchFinalizados(0);
 
 });

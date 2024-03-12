@@ -5,19 +5,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class OpiniaoController {
-    @GetMapping("/opinioes")
+public class FinalizadoController {
+    @GetMapping("/finalizados")
     public String get() {
-        return "opiniao/listaopiniao";
+        return "finalizado/listafinalizado";
     }
 
-    @GetMapping("/opiniaojogo")
+    @GetMapping("/jogofinalizado")
     public String getOpiniaoJogo() {
-        return "opiniao/jogoopiniao";
+        return "finalizado/jogofinalizado";
     }
 
-    @GetMapping("/opiniaojogo/editar") 
+    @GetMapping("/jogofinalizado/editar") 
     public String getOpiniaoJogoEditar() {
-        return "opiniao/updateopiniao";
+        return "finalizado/updatefinalizado";
     }   
 }

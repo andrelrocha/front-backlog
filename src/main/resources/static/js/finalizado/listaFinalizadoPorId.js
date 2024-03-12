@@ -3,6 +3,7 @@ function getOpinionGameImage(gameId) {
 
     const gameImage = document.getElementById('gameImage');
 
+    
     fetch(`http://localhost:8080/image/game/${gameId}`, {
             method: 'GET',
             headers: {
@@ -37,11 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const cookieString = document.cookie;
     const cookies = cookieString.split(';').map(cookie => cookie.trim());
-    let opinionId = null;
+    let finishedId = null;
     for (const cookie of cookies) {
         const [name, value] = cookie.split('=');
-        if (name === 'opinion_id') {
-            opinionId = value;
+        if (name === 'finished_id') {
+            finishedId = value;
                 break;
         }
     }
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    fetch(`http://localhost:8080/opinions/byid/${opinionId}`, {
+    fetch(`http://localhost:8080/finished/byid/${finishedId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`

@@ -157,29 +157,29 @@ td {
     /*margin: auto // Centraliza a img */
 }
 
-.opinionRow .gameName {
+.finalizadosRow .gameName {
     cursor: pointer;
 }
 
-#table-opinions {
+#table-finalizados {
     border-collapse: collapse;
 }
 
-.opinionRow:hover {
+.finalizadosRow:hover {
     transform: scale(1.05);
     transition: transform 0.2s;
 }
 
-.opinionRow:hover td {
+.finalizadosRow:hover td {
     background-color: var(--cor-principal) !important;
 }
 
-.opinionRow:hover td:first-child {
+.finalizadosRow:hover td:first-child {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
-.opinionRow:hover td:last-child {
+.finalizadosRow:hover td:last-child {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -298,4 +298,42 @@ td {
 #gamesNavigation:hover h1,
 #playingNavigation:hover h1 {
     font-weight: var(--fonte-peso-normal);
+}
+
+.afterOpinionsNavigation {
+    height: 20vh;
+    width: 40%;
+    background-color: hsl(180, 100%, 90%);
+    border-radius: 16px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.afterOpinionsNavigation:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+    background-color: var(--cor-hover);
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+.afterOpinionsNavigation h1 {
+    text-align: center;
+    font-weight: var(--fonte-peso-negrito);
+    font-size: 3rem;
+    font-family: var(--fonte-principal);
+}
+
+.afterOpinionsNavigation:hover h1 {
+    font-weight: var(--fonte-peso-normal);
+    color: var(--cor-branco);
+}
+
+#opinionNavigationMenu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
 }

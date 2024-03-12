@@ -2,13 +2,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const token = localStorage.getItem('token');
     const cookieString = document.cookie;
     const cookies = cookieString.split(';').map(cookie => cookie.trim());
-    let opinionId = null;
+    let finishedId = null;
 
     for (const cookie of cookies) {
         const [name, value] = cookie.split('=');
 
-        if (name === 'opinion_id') {
-            opinionId = value;
+        if (name === 'finished_id') {
+            finishedId = value;
             break;
         }
     }
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let gameGenre = document.getElementById('gameGenre');
     let gameOpinion = document.getElementById('gameOpinion');
 
-    fetch(`http://localhost:8080/opinions/byid/${opinionId}`, {
+    fetch(`http://localhost:8080/finished/byid/${finishedId}`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
             opinion: gameOpinion.value,
         };
 
-        fetch(`http://localhost:8080/opinions/update/${opinionId}`, {
+        fetch(`http://localhost:8080/finished/update/${finishedId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => {
             if (response.ok) {
                 alert('Opiniao atualizada com sucesso!');
-                document.getElementById('opiniaoForm').reset();
-                window.location.href = `http://localhost:1313/opinioes`;
+                document.getElementById('finalizadoForm').reset();
+                window.location.href = `http://localhost:1313/finalizados`;
             } else if (response.status === 400) {
                 response.text().then(errorMessage => {
                     alert(`Erro ${response.status}: ${errorMessage}`);

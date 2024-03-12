@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     const token = localStorage.getItem('token');
-    const button = document.getElementById('deleteOpinionButton');
+    const button = document.getElementById('deleteFinishedButton');
 
     const cookieString = document.cookie;
     const cookies = cookieString.split(';').map(cookie => cookie.trim());
-    let opinionId = null;
+    let finishedId = null;
     for (const cookie of cookies) {
         const [name, value] = cookie.split('=');
-        if (name === 'opinion_id') {
-            opinionId = value;
+        if (name === 'finished_id') {
+            finishedId = value;
             break;
         }
     }
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const userConfirmed = window.confirm('Você tem certeza que deseja excluir esta opinião? Esta ação não poderá ser desfeita.');
 
         if (userConfirmed) {
-            fetch(`http://localhost:8080/opinions/delete/${opinionId}`, {
+            fetch(`http://localhost:8080/finished/delete/${finishedId}`, {
                 method: 'DELETE',
                 headers: {
                     Authorization: `Bearer ${token}`

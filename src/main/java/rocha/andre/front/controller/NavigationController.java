@@ -9,4 +9,9 @@ public class NavigationController {
     public String afterLogin() {
         return "navigation/after_login";
     }
+
+    @GetMapping("/opinioes")
+    public String opinioes() {
+        return "navigation/opinions";
+    }
 }

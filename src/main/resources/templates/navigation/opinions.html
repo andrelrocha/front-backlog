@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backlog App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/styles/styles.css}"/>
+    <link rel="icon" href="/images/icon.svg">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center mt-4 mb-4" id="tituloPagina">O que você quer acessar hoje</h1>    
+            <div id="opinionNavigationMenu">
+    
+                <div class="afterOpinionsNavigation" id="finishedNavigation">
+                    <h1>Finalizados</h1>
+                </div>
+
+                <div class="afterOpinionsNavigation" id="droppedNavigation">
+                    <h1>Droppados</h1>
+                </div>
+            </div>
+    </div>
+
+    <script src="/js/navigation/linksOpinions.js"></script>
+    <script src="/js/validaJWT.js"></script>
+</body>
+</html>
