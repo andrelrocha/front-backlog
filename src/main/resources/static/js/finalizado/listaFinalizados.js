@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const nameCell = document.createElement('td');
                 nameCell.innerText = finalizadoData.name;
+                nameCell.id = "tableGameName";
                 nameCell.classList.add('gameName');
                 row.appendChild(nameCell);
 

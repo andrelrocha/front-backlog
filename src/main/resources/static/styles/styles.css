@@ -131,6 +131,16 @@ td {
     width: 100%;
 }
 
+.table-dropado th {
+    text-align: left;
+    min-width: 15rem;
+}
+
+.table-dropado {
+    border-collapse: collapse;
+    width: 100%;
+}
+
 .columnValue th,
 .columnValue td,
 .opinion th,
@@ -157,6 +167,35 @@ td {
     /*margin: auto // Centraliza a img */
 }
 
+//LISTAGEM DE JOGOS FINALIZADOS
+#tableGameName:hover {
+    cursor: pointer !important;
+}
+
+#table-dropado {
+    border-collapse: collapse;
+}
+
+.dropadosRow:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s;
+}
+
+.dropadosRow:hover td {
+    background-color: var(--cor-principal) !important;
+}
+
+.dropadosRow:hover td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.dropadosRow:hover td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+//LISTAGEM DE JOGOS DROPADOS
 .finalizadosRow .gameName {
     cursor: pointer;
 }

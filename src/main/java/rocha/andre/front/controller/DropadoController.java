@@ -9,4 +9,9 @@ public class DropadoController {
     public String get() {
         return "dropado/listadropado";
     }
+
+    @GetMapping("/jogodropado")
+    public String getJogoDropadoPorID() {
+        return "dropado/jogodropado";
+    }
 }
