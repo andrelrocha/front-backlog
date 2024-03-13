@@ -3,60 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste de Botão Acessar</title>
-
-    <!-- Adicione as dependências do Bootstrap e Bootstrap Icons -->
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.17.0/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Imagens do Banco</title>
+    <style>
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .image-container img {
+            width: 300px;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Botão para abrir a modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#criarJogoModal">
-        Abrir Modal
-    </button>
-
-    <div class="modal fade" id="criarJogoModal" tabindex="-1" aria-labelledby="criarJogoModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="criarJogoModalLabel">Criação de Jogo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="jogoForm" style="width:100%; max-width: 500px; margin: 0 auto;">
-                        <!-- Conteúdo do formulário aqui -->
-                        <div class="modal-footer" id="modalFooter">
-                            <!-- Os links serão adicionados aqui dinamicamente -->
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="image-container">
+        <!-- As imagens serão inseridas dinamicamente pelo JavaScript -->
     </div>
 
-    <!-- Scripts do Bootstrap (se necessário) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-    <!-- Script para adicionar links ao modal com a classe btn-light -->
     <script>
-        var links = [
-            { href: "http://localhost:1313/jogos", text: "Ir para Jogos" },
-            { href: "http://localhost:1313/jogando", text: "Ir para Jogando" },
-            { href: "http://localhost:1313/opinioes", text: "Ir para Opiniões" }
-        ];
+        function getAllGameImages() {
+            const token = localStorage.getItem('token');
+            const startTime = performance.now(); // Obtém o tempo de início
 
-        var modalFooter = document.getElementById('modalFooter');
+            fetch(`http://localhost:8080/image/allgamesid`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+            }).then(response => {
+                if (!response.ok) {
+                    if (response.status === 400) {
+                        return response.text().then(errorMessage => {
+                            alert('Erro 400: ' + errorMessage);
+                            throw new Error(`Erro ${response.status}: ${errorMessage}`);
+                        });
+                    } else if (response.status === 401 || response.status === 403) {
+                        console.log(response.text());
+                        throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
+                    }
+                }
 
-        links.forEach(function (linkData) {
-            var link = document.createElement("a");
-            link.href = linkData.href;
-            link.textContent = linkData.text;
-            link.className = "btn btn-light";
-            link.setAttribute("target", "_blank");
+                return response.json();
+            })
+            .then(gameIds => {
+                const imageContainer = document.querySelector('.image-container');
+                gameIds.forEach(gameId => {
+                    // Requisita a imagem em forma de blob para cada ID de jogo
+                    fetch(`http://localhost:8080/image/game/${gameId}`, {
+                        method: 'GET',
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }).then(response => {
+                        if (!response.ok) {
+                            if (response.status === 400) {
+                                return response.text().then(errorMessage => {
+                                    alert('Erro 400: ' + errorMessage);
+                                    throw new Error(`Erro ${response.status}: ${errorMessage}`);
+                                });
+                            } else if (response.status === 401 || response.status === 403) {
+                                console.log(response.text());
+                                throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
+                            } 
+                        }
+                        return response.blob();
+                    }).then(blob => {
+                        // Cria uma URL para o blob
+                        const imageUrl = URL.createObjectURL(blob);
+                        // Adiciona a imagem ao contêiner de imagens
+                        imageContainer.innerHTML += `<img src="${imageUrl}" alt="Imagem do Jogo - ID: ${gameId}">`;
+                    }).catch(error => {
+                        console.error(error);
+                    });
+                });
 
-            modalFooter.appendChild(link);
-        });
+                const endTime = performance.now(); // Obtém o tempo de término
+                const elapsedTime = endTime - startTime; // Calcula o tempo decorrido
+                console.log(`Tempo de execução: ${elapsedTime.toFixed(2)} milissegundos`);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+        }
+
+        // Chame a função getAllGameImages para carregar todas as imagens
+        getAllGameImages();
     </script>
 </body>
 </html>

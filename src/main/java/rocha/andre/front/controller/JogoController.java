@@ -25,7 +25,7 @@ public class JogoController {
         return "jogo/update";
     }
 
-    @GetMapping("/jogos/teste")
+    @GetMapping("/teste")
     public String teste() {
         return "teste";
     }

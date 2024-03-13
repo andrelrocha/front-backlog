@@ -5,30 +5,30 @@ function getOpinionGameImage(gameId) {
 
     
     fetch(`http://localhost:8080/image/game/${gameId}`, {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+        }).then(response => {
+            if (!response.ok) {
+                if (response.status === 400) {
+                    return response.text().then(errorMessage => {
+                        alert('Erro 400: ' + errorMessage);
+                        throw new Error(`Erro ${response.status}: ${errorMessage}`);
+                    });
+                } else if (response.status === 401 || response.status === 403) {
+                    console.log(response.text());
+                    throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
+                } 
             }
-            }).then(response => {
-                if (!response.ok) {
-                    if (response.status === 400) {
-                        return response.text().then(errorMessage => {
-                            alert('Erro 400: ' + errorMessage);
-                            throw new Error(`Erro ${response.status}: ${errorMessage}`);
-                        });
-                    } else if (response.status === 401 || response.status === 403) {
-                        console.log(response.text());
-                        throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
-                    } 
-                }
 
-                return response.blob();
-            }).then(blob => {
-                const imageUrl = URL.createObjectURL(blob);
-                gameImage.innerHTML = '<img src="' + imageUrl + '" alt="Imagem do Jogo">';
-            }).catch(error => {
-                console.error(error);
-            });
+            return response.blob();
+        }).then(blob => {
+            const imageUrl = URL.createObjectURL(blob);
+            gameImage.innerHTML = '<img src="' + imageUrl + '" alt="Imagem do Jogo">';
+        }).catch(error => {
+            console.error(error);
+        });
 }
 
 
