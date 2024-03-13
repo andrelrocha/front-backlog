@@ -9,12 +9,18 @@
 <script src="/js/generateHeader.js"></script>
 <body>
 
-    <h1 id="tituloPagina">Lista de Opiniões Sobre Jogos Finalizados 
-        <button id="trocaVisualizacaoJogos" class="trocaVisualizacaoJogos"><i class="fa fa-picture-o" aria-hidden="true"></i></button>
-    </h1>
+    
 
     <div class="container">
         <div class="row">
+            <h1 id="tituloPagina">
+                <div id="tituloPaginaContainer">
+        
+                    <button id="trocaVisualizacaoJogos" class="trocaVisualizacaoJogos"><i class="fa fa-picture-o" aria-hidden="true"></i></button>
+                    Lista de Opiniões Sobre Jogos Finalizados 
+                    <button style="background-color: var(----cor-branco); border: none;" disabled></button>
+                </div>
+            </h1>
             <div class="col">
                 <table class="table" id="table-finalizados">
                     <thead>
@@ -44,6 +50,7 @@
 </body>
 <script src="/js/finalizado/listaFinalizadosPorImage.js"></script>
 <script src="/js/finalizado/listaFinalizados.js"></script>
+<script src="/js/finalizado/manageListaFinalizadosExibicao.js"></script>
 <script src="/js/validaJWT.js"></script>
     
 </html>

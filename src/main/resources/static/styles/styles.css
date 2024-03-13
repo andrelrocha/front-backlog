@@ -378,15 +378,27 @@ td {
 h1 button {
     background-color: transparent;
     border: none;
-    cursor: pointer; 
-    height: 50%;
+}
+
+#tituloPaginaListaJogos {
+    text-align: center;
+    margin-top: 5rem;
+    font-family: var(--fonte-principal);
+    font-weight: var(--fonte-peso-negrito);
 }
 
 .trocaVisualizacaoJogos {
     background-color: transparent;
     border: none;
-    height: 50%;
 }
+
+#tituloPaginaContainer {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    margin: auto;
+}
+
 
 .trocaVisualizacaoJogos:hover {
     transform: scale(1.1);
