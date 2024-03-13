@@ -372,3 +372,46 @@ td {
     align-items: center;
     flex-direction: row;
 }
+
+
+//LISTAGEM DE JOGOS FINALIZADOS POR IMAGEM
+h1 button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer; 
+    height: 50%;
+}
+
+.trocaVisualizacaoJogos {
+    background-color: transparent;
+    border: none;
+    height: 50%;
+}
+
+.trocaVisualizacaoJogos:hover {
+    transform: scale(1.1);
+}
+
+.image-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.image-container img {
+    width: calc(100vw / 5);
+    height: calc(100vh / 3);
+    border-radius: 10px;
+    margin: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.image-container img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    cursor: pointer;
+}
