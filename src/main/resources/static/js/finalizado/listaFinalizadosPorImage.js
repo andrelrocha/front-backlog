@@ -27,7 +27,6 @@ function trocaVisualizacaoJogosParaImg() {
     }
 
     const token = localStorage.getItem('token');
-    const startTime = performance.now(); 
 
     fetch(`http://localhost:8080/image/allgamesid`, {
         method: 'GET',
