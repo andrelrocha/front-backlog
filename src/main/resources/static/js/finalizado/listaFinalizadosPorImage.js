@@ -1,20 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const trocaVisualizacaoJogos = document.getElementById('trocaVisualizacaoJogos');
-    const tableContainer = document.getElementById('table-finalizados');
-    const imageContainer = document.querySelector('.image-container');
+function trocaVisualizacaoJogosParaImg() {
+    const imageContainer = document.getElementById('image-container');
 
-    trocaVisualizacaoJogos.addEventListener('click', function() {
-        if (trocaVisualizacaoJogos.innerHTML.includes("fa fa-picture-o")) { 
-            console.log("Mudando para visualização de imagens");
-            tableContainer.style.display = 'none';
-            imageContainer.style.display = 'block';
-            trocaVisualizacaoJogos.innerHTML = '<i class="fa fa-list" aria-hidden="true"></i>';
-        }
-
-        const token = localStorage.getItem('token');
-        const startTime = performance.now(); 
-
-        fetch(`http://localhost:8080/image/allgamesid`, {
+    function abrirPaginaPeloGameId(gameId, token) {
+        fetch(`http://localhost:8080/finished/bygameid/${gameId}`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`
@@ -27,48 +15,93 @@ document.addEventListener('DOMContentLoaded', function() {
                         throw new Error(`Erro ${response.status}: ${errorMessage}`);
                     });
                 } else if (response.status === 401 || response.status === 403) {
-                    console.log(response.text());
                     throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
-                }
+                } 
             }
-
             return response.json();
-        })
-        .then(gameIds => {
-            gameIds.forEach(gameId => {
-                // Requisita a imagem em forma de blob para cada ID de jogo
-                fetch(`http://localhost:8080/image/game/${gameId}`, {
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }).then(response => {
-                    if (!response.ok) {
-                        if (response.status === 400) {
-                            return response.text().then(errorMessage => {
-                                alert('Erro 400: ' + errorMessage);
-                                throw new Error(`Erro ${response.status}: ${errorMessage}`);
-                            });
-                        } else if (response.status === 401 || response.status === 403) {
-                            console.log(response.text());
-                            throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
-                        } 
-                    }
-                    return response.blob();
-                }).then(blob => {
-                    const imageUrl = URL.createObjectURL(blob);
-                    imageContainer.innerHTML += `<img src="${imageUrl}" id="${gameId}">`;
-                }).catch(error => {
-                    console.error(error);
+        }).then(finishedData => {    
+            const finishedId = finishedData.id;
+            document.cookie = `finished_id=${finishedId}; path=/`;
+            window.location.href = 'http://localhost:1313/jogofinalizado';
+        });
+    }
+
+    const token = localStorage.getItem('token');
+    const startTime = performance.now(); 
+
+    fetch(`http://localhost:8080/image/allgamesid`, {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(response => {
+        if (!response.ok) {
+            if (response.status === 400) {
+                return response.text().then(errorMessage => {
+                    alert('Erro 400: ' + errorMessage);
+                    throw new Error(`Erro ${response.status}: ${errorMessage}`);
+                });
+            } else if (response.status === 401 || response.status === 403) {
+                console.log(response.text());
+                throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
+            }
+        }
+
+        return response.json();
+    })
+    .then(gameIds => {
+        const gameIdsArray = gameIds;
+    
+        // Mapeia os IDs dos jogos para promessas de imagens
+        const fetchPromises = gameIds.map(gameId => {
+            return fetch(`http://localhost:8080/image/game/${gameId}`, {
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(response => {
+                if (!response.ok) {
+                    if (response.status === 400) {
+                        return response.text().then(errorMessage => {
+                            alert('Erro 400: ' + errorMessage);
+                            throw new Error(`Erro ${response.status}: ${errorMessage}`);
+                        });
+                    } else if (response.status === 401 || response.status === 403) {
+                        throw new Error(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
+                    } 
+                }
+                return response.blob();
+            }).then(blob => {
+                return { gameId, blob }; // Retorna um objeto com o ID do jogo e o blob da imagem
+            }).catch(error => {
+                console.error(error);
+            });
+        });
+    
+        // Aguarda todas as promessas serem resolvidas
+        return Promise.all(fetchPromises).then(imagesData => {
+            // Ordena as imagens na ordem em que foram recebidas do backend
+            imagesData.sort((a, b) => {
+                return gameIdsArray.indexOf(a.gameId) - gameIdsArray.indexOf(b.gameId);
+            });
+    
+            imagesData.forEach(imageData => {
+                const imageUrl = URL.createObjectURL(imageData.blob);
+                const image = document.createElement('img');
+                image.src = imageUrl;
+                image.id = imageData.gameId;
+                imageContainer.appendChild(image);
+                
+                image.addEventListener('click', () => {
+                    console.log(`Clicou na imagem do jogo ${imageData.gameId}`);
+                    abrirPaginaPeloGameId(imageData.gameId, token);
                 });
             });
-
-            const endTime = performance.now(); 
-            const elapsedTime = endTime - startTime; // Calcula o tempo decorrido na operação de ir no banco pegar as imagens
-            console.log(`Tempo de execução: ${elapsedTime.toFixed(2)} milissegundos`);
-        })
-        .catch(error => {
-            console.error(error);
         });
+    }).catch(error => {
+        console.error(error);
     });
-});
+}
+
+
+export default trocaVisualizacaoJogosParaImg;

@@ -404,7 +404,7 @@ h1 button {
     transform: scale(1.1);
 }
 
-.image-container {
+#image-container {
     margin-top: 1rem;
     display: flex;
     flex-direction: row;
@@ -413,7 +413,7 @@ h1 button {
     align-items: center;
 }
 
-.image-container img {
+#image-container img {
     width: calc(100vw / 5);
     height: calc(100vh / 3);
     border-radius: 10px;
@@ -421,7 +421,7 @@ h1 button {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
-.image-container img:hover {
+#image-container img:hover {
     transform: scale(1.05);
     transition: transform 0.3s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 1);
