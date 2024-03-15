@@ -66,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .catch(error => {
                     console.error('Erro:', error.message);
-                    alert(error.message);
                 });  
         }
 }); 

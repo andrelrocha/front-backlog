@@ -418,12 +418,12 @@ h1 button {
     height: calc(100vh / 3);
     border-radius: 10px;
     margin: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 #image-container img:hover {
     transform: scale(1.05);
     transition: transform 0.3s;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    box-shadow: 0 0 10px var(--cor-hover);
     cursor: pointer;
 }

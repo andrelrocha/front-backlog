@@ -122,7 +122,6 @@ function trocaVisualizacaoJogosParaImg() {
                     imageContainer.appendChild(image);
                     
                     image.addEventListener('click', () => {
-                        console.log(`Clicou na imagem do jogo ${imageData.gameId}`);
                         abrirPaginaPeloGameId(imageData.gameId, token);
                     });
                 });

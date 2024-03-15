@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
         }
     }
-    console.log(finishedId);
 
     function acessarJogoPorId(id) {
         document.cookie = `game_id=${id}; path=/`;
@@ -60,8 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .then(response => {
-            console.log(finishedId);
-
             if (!response.ok) {
                 if (response.status === 400) {
                     return response.text().then(errorMessage => {
@@ -114,6 +111,5 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Erro:', error.message);
-            alert(error.message);
         });  
 });
