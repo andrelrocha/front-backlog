@@ -59,6 +59,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (document.getElementById('gameGenre')) {
                         document.getElementById('gameGenre').innerText = gameData.genre;
                     }
+
+                    window.addEventListener('beforeunload', function(event) {
+                        document.cookie = `game_id=${gameId}; path=/`;
+                    });
                 })
                 .catch(error => {
                     console.error('Erro:', error.message);

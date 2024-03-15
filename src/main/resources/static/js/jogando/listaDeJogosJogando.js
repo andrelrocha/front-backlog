@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function() {
             throw new Error('Ação cancelada.');
         } 
 
-        fetch('http://localhost:8080/opinions/create', {
+        fetch('http://localhost:8080/finished/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => {
             if (response.status === 201) {
                 alert('Opinião criada com sucesso!');
-                window.location.href = 'http://localhost:1313/opinioes';
+                window.location.href = 'http://localhost:1313/finalizados';
                 return response.json();
             } else if (response.status === 400) {
                 response.text().then(errorMessage => {

@@ -33,7 +33,6 @@ function getOpinionGameImage(gameId) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-
     const token = localStorage.getItem('token');
 
     const cookieString = document.cookie;
@@ -102,6 +101,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             getOpinionGameImage(gameData.gameId);
+
+            window.addEventListener('beforeunload', function(event) {
+                document.cookie = `finished_id=${finishedId}; path=/`;
+            });
 
             const button = document.getElementById('button_acessar_jogo')
 

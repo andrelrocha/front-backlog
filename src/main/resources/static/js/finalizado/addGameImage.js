@@ -34,6 +34,7 @@ document.getElementById('addGameImage').addEventListener('click', function () {
                     }
                 } else {
                     alert('Imagem adicionada com sucesso!');
+                    document.cookie = `finished_id=${gameId}; path=/`;
                     location.reload();
                 }
             })
