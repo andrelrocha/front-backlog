@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const paginationContainer = document.getElementById('pagination');
-
+function listarFinalizados() {
     const token = localStorage.getItem('token');
+
+    const paginationContainer = document.getElementById('pagination');
 
     let currentPage = 0;
     function createPaginationButtons(totalPages) {
@@ -118,4 +118,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     fetchFinalizados(0);
 
-});
+};
+
+export default listarFinalizados;
