@@ -27,20 +27,22 @@ document.getElementById('jogoForm').addEventListener('submit', function(event) {
     })
     .then(response => {
         if (response.ok) {
-            alert('Jogo criado com sucesso!');
-            document.getElementById('jogoForm').reset();
-            window.location.href = 'http://localhost:1313/jogos';
+            return response.json();
         } else if (response.status === 400) {
             response.text().then(errorMessage => {
                 alert(`Erro ${response.status}: ${errorMessage}`);
             });
-        } else if (response.status === 401) {
-            alert('Erro 401: Você não está autorizado para a operação desejada');
-        } else if (response.status === 403) {
-            alert('Erro 403: Você não está autorizado para a operação desejada');
+        } else if (response.status === 401 || response.status === 403) {
+            alert(`Erro ${response.status}: Você não está autorizado para a operação desejada`);
         } else {
             alert('Erro ao criar jogo. Por favor, tente novamente.');
         }
+    })
+    .then(data => {
+            document.getElementById('jogoForm').reset();
+            alert('Jogo criado com sucesso!');
+            document.cookie = `game_id=${data.id}; path=/`;
+            window.location.href = 'http://localhost:1313/jogos/jogoporid';
     })
     .catch(error => {
         console.error('Erro:', error);

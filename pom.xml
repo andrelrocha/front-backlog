@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>rocha.andre</groupId>
-	<artifactId>front</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>MyBacklogFrontApp</artifactId>
+	<version>0.0.1</version>
 	<name>front</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
